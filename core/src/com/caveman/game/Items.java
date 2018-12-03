@@ -11,4 +11,22 @@ package com.caveman.game;
  */
 public class Items {
     
+    public class Food extends Items{
+    
+}
+    
+    public class Shield extends Items{
+        
+    }
+    
+    public class Key extends Items{
+        
+    }
+    
+    public class Beam extends Items{
+        
+    }
+    
+    
+    
 }
