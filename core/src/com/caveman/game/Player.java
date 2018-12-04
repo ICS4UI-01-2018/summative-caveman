@@ -5,6 +5,7 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -66,5 +67,8 @@ public class Player {
         }else{
             
         }
+    }
+    public void draw(ShapeRenderer shapeBatch){
+        shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
 }

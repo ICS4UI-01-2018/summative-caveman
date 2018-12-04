@@ -20,7 +20,7 @@ public class Caveman extends ApplicationAdapter {
     private ShapeRenderer shapeBatch;
     //private Texture img;
     private Player player;
-    private ArrayList<Enemies> enemies;
+   // private ArrayList<Enemies> enemies;
     private ArrayList<Rectangle> walls;
     private OrthographicCamera cam;
     private FitViewport viewport;
@@ -41,13 +41,12 @@ public class Caveman extends ApplicationAdapter {
         cam.position.y = 300;
         cam.update();
         
-        //player = new Player(390, 290, 20, 20, 4);
+        player = new Player(390, 290, 20, 20, 5, 4);
         
         wall1 = new Rectangle(25, 100, 25, 400);
         wall2 = new Rectangle(750, 100, 25, 400);
         wall3 = new Rectangle(25, 75, 750, 25);
         wall4 = new Rectangle(25, 500, 750, 25);
-        //player = new Player(390, 290, 20, 20, 4);
         
 
     }
@@ -60,18 +59,18 @@ public class Caveman extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        //if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-          //  player.moveUp();
-        //}
-        //if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-          //  player.moveLeft();
-        //}
-        //if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-          //  player.moveRight();
-        //}
-        //if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-          //  player.moveDown();
-        //}
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            player.moveUp();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.moveLeft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.moveRight();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            player.moveDown();
+        }
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Line);
         
@@ -80,6 +79,7 @@ public class Caveman extends ApplicationAdapter {
         shapeBatch.rect(wall2.x, wall2.y, wall2.width, wall2.height);
         shapeBatch.rect(wall3.x, wall3.y, wall3.width, wall3.height);
         shapeBatch.rect(wall4.x, wall4.y, wall4.width, wall4.height);
+        player.draw(shapeBatch);
         
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
