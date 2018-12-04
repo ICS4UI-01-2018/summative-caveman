@@ -46,4 +46,8 @@ public class Enemy {
         }
     }
     
+    public void attack(int damage){
+        
+    }
+    
 }
