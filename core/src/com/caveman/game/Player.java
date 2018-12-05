@@ -14,6 +14,8 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
     
+    private float x;
+    private float y;
     private Rectangle player;
     private int speed;
     private int health;
@@ -23,6 +25,14 @@ public class Player {
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
         this.health = health;
+    }
+    
+    public float getPlayerX(){
+        return this.x;
+    }
+    
+    public float getPlayerY(){
+        return this.y;
     }
     
     public void pickUpDropItems(){
@@ -45,7 +55,7 @@ public class Player {
         player.x = player.x + speed;
     }
     
-    public void Health(){
+    public void health(){
         
     }
     
