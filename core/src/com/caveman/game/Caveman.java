@@ -28,6 +28,7 @@ public class Caveman extends ApplicationAdapter {
     private Rectangle wall2;
     private Rectangle wall3;
     private Rectangle wall4;
+    private Enemy enemy;
 
     @Override
     public void create() {
