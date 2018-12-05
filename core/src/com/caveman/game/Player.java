@@ -5,6 +5,7 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -13,6 +14,8 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
     
+    private float x;
+    private float y;
     private Rectangle player;
     private int speed;
     private int health;
@@ -24,7 +27,15 @@ public class Player {
     public Player(float x, float y, int width, int height, int health, int speed){
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
-        
+        this.health = health;
+    }
+    
+    public float getPlayerX(){
+        return this.x;
+    }
+    
+    public float getPlayerY(){
+        return this.y;
     }
     
     public void pickUpDropItems(){
@@ -47,7 +58,7 @@ public class Player {
         player.x = player.x + speed;
     }
     
-    public void Health(){
+    public void health(){
         
     }
     
@@ -77,5 +88,8 @@ public class Player {
                 
             }
         }
+    }
+    public void draw(ShapeRenderer shapeBatch){
+        shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
 }

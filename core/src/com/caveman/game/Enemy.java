@@ -11,12 +11,13 @@ package com.caveman.game;
  */
 public class Enemy {
     
-    public float x;
-    public float y;
+    private float x;
+    private float y;
     public int health;
     public int damage;
     public int speed;
     public boolean collide;
+    Player player;
     
     public Enemy(float x, float y, int health, int damage, int speed){
         this.x = x;
@@ -26,12 +27,20 @@ public class Enemy {
         this.speed = speed;
     }
     
+    public float getEnemyX(){
+        return this.x;
+    }
+    
+    public float getEnemyY(){
+        return this.y;
+    }
+    
     public void move(){
         
     }
     
-    public void trackPlayer(){
-        
+    public void trackPlayer(Player player){
+
     }
     
     public void collision(){
@@ -39,11 +48,7 @@ public class Enemy {
     }
     
     public boolean collide(){
-        if(collide = true){
-            return true;
-        }else{
-            return false;
-        }
+        return collide = true;
     }
     
     public void attack(int damage){
