@@ -7,6 +7,10 @@ import com.caveman.game.Caveman;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new Caveman(), config);
+		
+                config.width = 800;
+                config.height = 600;
+                
+                new LwjglApplication(new Caveman(), config);
 	}
 }

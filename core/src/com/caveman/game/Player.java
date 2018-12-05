@@ -5,39 +5,47 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
+
 /**
  *
  * @author choij2116
  */
 public class Player {
-
-    private int speed;
     
-    public Player(float x, float y, int health, int speed){
-        
+    private Rectangle player;
+    private int speed;
+    private int health;
+    private boolean collide;
+    
+    public Player(float x, float y, int width, int height, int health, int speed){
+        this.speed = speed;
+        player = new Rectangle(x,y,width,height);
+        this.health = health;
     }
     
-    public void PickUpDropItems(){
+    public void pickUpDropItems(){
         
     }
     
     public void moveUp(){
-        
+        player.y = player.y + speed;
     }
     
     public void moveDown(){
-        
+        player.y = player.y - speed;
     }
     
     public void moveLeft(){
-        
+        player.x = player.x - speed;
     }
     
     public void moveRight(){
-        
+        player.x = player.x + speed;
     }
     
-    public void health(){
+    public void Health(){
         
     }
     
@@ -46,10 +54,21 @@ public class Player {
     }
     
     public boolean collide(){
-        return true;
+        if(collide == true){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     public void damage(){
-        
+        if(collide == true){
+            
+        }else{
+            
+        }
+    }
+    public void draw(ShapeRenderer shapeBatch){
+        shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
 }
