@@ -14,15 +14,28 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
     
+    private float x;
+    private float y;
     private Rectangle player;
     private int speed;
     private int health;
+    private int maxhealth = 500;
     private boolean collide;
+    private int hitCount;
+    private boolean alive;
     
     public Player(float x, float y, int width, int height, int health, int speed){
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
         this.health = health;
+    }
+    
+    public float getPlayerX(){
+        return this.x;
+    }
+    
+    public float getPlayerY(){
+        return this.y;
     }
     
     public void pickUpDropItems(){
@@ -45,12 +58,17 @@ public class Player {
         player.x = player.x + speed;
     }
     
-    public void Health(){
+    public void health(){
         
     }
     
     public void collision(){
+        hitCount = 0;
         
+        if(collide){
+            hitCount++;
+            damage();
+        }
     }
     
     public boolean collide(){
@@ -61,11 +79,14 @@ public class Player {
         }
     }
     
+    
     public void damage(){
         if(collide == true){
-            
-        }else{
-            
+            if(health > 0){
+                health = health - 50;
+            }else if(health <=0){
+                
+            }
         }
     }
     public void draw(ShapeRenderer shapeBatch){

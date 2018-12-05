@@ -17,6 +17,7 @@ public class Enemy {
     public int damage;
     public int speed;
     public boolean collide;
+    Player player;
     
     public Enemy(float x, float y, int health, int damage, int speed){
         this.x = x;
@@ -26,12 +27,20 @@ public class Enemy {
         this.speed = speed;
     }
     
+    public float getEnemyX(){
+        return this.x;
+    }
+    
+    public float getEnemyY(){
+        return this.y;
+    }
+    
     public void move(){
         
     }
     
-    public void trackPlayer(){
-        
+    public void trackPlayer(Player player){
+
     }
     
     public void collision(){
