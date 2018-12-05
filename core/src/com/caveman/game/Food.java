@@ -7,14 +7,8 @@ package com.caveman.game;
 
 /**
  *
- * @author choij2116
+ * @author modia9548
  */
-public class Sword extends Player{
+public class Food {
     
-    
-    public Sword(){
-        
-        
-        
-    }
 }
