@@ -14,24 +14,24 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
     
-    private float x;
-    private float y;
+    private int x;
+    private int y;
     private Rectangle player;
     private int speed;
-    private int health;
+    public int health;
     private boolean collide;
     
-    public Player(float x, float y, int width, int height, int health, int speed){
+    public Player(int x, int y, int width, int height, int health, int speed){
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
         this.health = health;
     }
     
-    public float getPlayerX(){
+    public int getPlayerX(){
         return this.x;
     }
     
-    public float getPlayerY(){
+    public int getPlayerY(){
         return this.y;
     }
     
