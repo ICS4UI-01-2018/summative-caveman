@@ -16,7 +16,7 @@ public class Slasher extends Enemy{
     
     private int attackRange;
     
-    public Slasher(float x, float y, int health, int damage, int speed){
+    public Slasher(int x, int y, int health, int damage, int speed){
         super(x, y, health, damage, speed);
     }
     
