@@ -22,20 +22,6 @@ public class Slasher extends Enemy{
         
     }
     
-    public void trackPlayer(){
-        
-    }
-    
-    @Override
-    public void collision(){
-        
-    }
-    
-    @Override
-    public boolean collide(){
-        return collide = true;
-    }
-    
     public void attack(int damage, int attackRange, Player player){
         if(player.x <= attackRange || player.y <= attackRange){
             player.health = player.health - damage;

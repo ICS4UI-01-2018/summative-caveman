@@ -10,49 +10,64 @@ package com.caveman.game;
  * @author choij2116
  */
 public class Enemy {
-    
-    private float x;
-    private float y;
+
+    private final int xPos;
+    private final int yPos;
     public int health;
     public int damage;
     public int speed;
     public boolean collide;
+    public boolean dead;
     Player player;
-    
-    public Enemy(float x, float y, int health, int damage, int speed){
-        this.x = x;
-        this.y = y;
+
+    public Enemy(int x, int y, int health, int damage, int speed) {
+        this.xPos = x;
+        this.yPos = y;
         this.health = health;
         this.damage = damage;
         this.speed = speed;
     }
-    
-    public float getEnemyX(){
-        return this.x;
+
+    public int getEnemyX() {
+        return this.xPos;
     }
-    
-    public float getEnemyY(){
-        return this.y;
+
+    public int getEnemyY() {
+        return this.yPos;
     }
-    
-    public void move(){
-        
-    }
-    
-    public void trackPlayer(Player player){
+
+    public void move() {
 
     }
-    
-    public void collision(){
-        
+
+    public void trackPlayer(Player player) {
+        int playX = player.getPlayerX();
+        int playY = player.getPlayerY();
+        if (this.xPos > playX) {
+
+        }
     }
-    
-    public boolean collide(){
+
+    public void collision() {
+
+    }
+
+    public boolean collide() {
         return collide = true;
     }
-    
-    public void attack(int damage){
-        
+
+    public void dying() {
+        if (health <= 0) {
+            dead = true;
+        }
     }
-    
+
+    public boolean dead() {
+        return dead = true;
+    }
+
+    public void attack(int damage) {
+
+    }
+
 }
