@@ -9,24 +9,31 @@ package com.caveman.game;
  *
  * @author choij2116
  */
-public class Items {
+public abstract class Items {
+    private int damage;
+    private int range;
+    private String name;
     
-    public class Food extends Items{
     
-}
-    
-    public class Shield extends Items{
-        
+    public Items(int effect, int range, String name){
+        this.damage = damage;
+        this.range = range;
+        this.name = name;
     }
     
-    public class Key extends Items{
-        
+    public int getDamage(){
+        return this.damage;
     }
     
-    public class Beam extends Items{
-        
+    public int getRange(){
+        return this.range;
     }
     
+    public String getName(){
+        return this.name;
+    }
+    
+      
     
     
 }
