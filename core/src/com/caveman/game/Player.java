@@ -11,6 +11,9 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  *
  * @author choij2116
+ * @author modia9548
+ * @author tarra7926
+ * @author macdn5071
  */
 public class Player {
     
