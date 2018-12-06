@@ -26,6 +26,8 @@ public class Player {
     private boolean alive;
     
     public Player(int x, int y, int width, int height, int health, int speed){
+        this.x = x;
+        this.y = y; 
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
         this.health = health;
