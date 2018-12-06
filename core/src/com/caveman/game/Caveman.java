@@ -34,6 +34,7 @@ public class Caveman extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
+        walls = new ArrayList<Rectangle>();
         //img = new Texture("badlogic.jpg");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
@@ -44,10 +45,10 @@ public class Caveman extends ApplicationAdapter {
         
         player = new Player(390, 290, 20, 20, 5, 4);
         
-        wall1 = new Rectangle(25, 100, 25, 400);
-        wall2 = new Rectangle(750, 100, 25, 400);
-        wall3 = new Rectangle(25, 75, 750, 25);
-        wall4 = new Rectangle(25, 500, 750, 25);
+        walls.add(new Rectangle(25, 100, 25, 400));
+        walls.add(new Rectangle(750, 100, 25, 400));
+        walls.add(new Rectangle(25, 75, 750, 25));
+        walls.add(new Rectangle(25, 500, 750, 25));
         
 
     }
@@ -72,14 +73,15 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.moveDown();
         }
+        
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Line);
         
         shapeBatch.setColor(Color.GRAY);
-        shapeBatch.rect(wall1.x, wall1.y, wall1.width, wall1.height);
-        shapeBatch.rect(wall2.x, wall2.y, wall2.width, wall2.height);
-        shapeBatch.rect(wall3.x, wall3.y, wall3.width, wall3.height);
-        shapeBatch.rect(wall4.x, wall4.y, wall4.width, wall4.height);
+        for (int i = 0; i < walls.size(); i++) {
+            shapeBatch.rect(walls.get(i).x, walls.get(i).y, walls.get(i).width, walls.get(i).height);
+        }
+
         player.draw(shapeBatch);
         
         shapeBatch.end();

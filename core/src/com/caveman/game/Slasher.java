@@ -23,7 +23,7 @@ public class Slasher extends Enemy{
     }
     
     public void attack(int damage, int attackRange, Player player){
-        if(player.x || player.y =< attackRange){
+        if(player.x =< attackRange || player.y =< attackRange){
             player.health = player.health - damage;
         }
     }

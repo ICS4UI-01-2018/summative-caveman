@@ -43,8 +43,7 @@ public class Enemy {
     public void trackPlayer(Player player) {
         int playX = player.getPlayerX();
         int playY = player.getPlayerY();
-        if (dead == false) {
-            if(this.xPos > playX)
+        if (this.xPos > playX) {
 
         }
     }
