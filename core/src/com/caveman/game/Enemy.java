@@ -51,14 +51,6 @@ public class Enemy {
         }
     }
 
-    public void collision() {
-
-    }
-
-    public boolean collide() {
-        return collide = true;
-    }
-
     public void dying() {
         if (health <= 0) {
             dead = true;
