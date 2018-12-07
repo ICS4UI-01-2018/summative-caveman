@@ -12,11 +12,11 @@ package com.caveman.game;
  * @author tarra7926
  * @author macdn5071
  */
-public class Sword extends Player{
-    private int damage;
+public class Sword extends Items{
     
-    public Sword(int damage, String name, int range){
-        this.damage = 75;
+    
+    public Sword(int effect, int range, String name){
+        
         
         
         
