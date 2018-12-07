@@ -11,8 +11,9 @@ package com.caveman.game;
  */
 public class Enemy {
 
-    private final int xPos;
-    private final int yPos;
+    int xPos;
+    int yPos;
+
     public int health;
     public int damage;
     public int speed;
@@ -43,7 +44,22 @@ public class Enemy {
     public void trackPlayer(Player player) {
         int playX = player.getPlayerX();
         int playY = player.getPlayerY();
-        if (this.xPos > playX) {
+        if (dead == false) {
+            if (this.xPos > playX) {
+                this.xPos = xPos - speed;
+            } else if (this.xPos < playX) {
+                this.xPos = xPos + speed;
+            } else {
+                this.xPos = xPos;
+            }
+            if (this.yPos > playY) {
+                this.yPos = yPos - speed;
+            } else if (this.yPos < playY) {
+                this.yPos = yPos + speed;
+            } else {
+                this.yPos = yPos;
+            }
+        } else if (dead == true) {
 
         }
     }
@@ -62,10 +78,18 @@ public class Enemy {
         }
     }
 
-    public boolean dead() {
-        return dead = true;
+    public boolean hasDied() {
+        if (dead == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    /**
+     *
+     * @param damage
+     */
     public void attack(int damage) {
 
     }
