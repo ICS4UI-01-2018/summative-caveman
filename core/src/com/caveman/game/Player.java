@@ -11,6 +11,9 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  *
  * @author choij2116
+ * @author modia9548
+ * @author tarra7926
+ * @author macdn5071
  */
 public class Player {
     
@@ -26,6 +29,8 @@ public class Player {
     private boolean alive;
     
     public Player(int x, int y, int width, int height, int health, int speed){
+        this.x = x;
+        this.y = y; 
         this.speed = speed;
         player = new Rectangle(x,y,width,height);
         this.health = health;

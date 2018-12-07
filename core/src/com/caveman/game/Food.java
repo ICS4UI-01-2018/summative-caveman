@@ -7,18 +7,8 @@ package com.caveman.game;
 
 /**
  *
- * @author choij2116
  * @author modia9548
- * @author tarra7926
- * @author macdn5071
  */
-public class Sword extends Player{
-    private int damage;
+public class Food {
     
-    public Sword(int damage, String name, int range){
-        this.damage = 75;
-        
-        
-        
-    }
 }
