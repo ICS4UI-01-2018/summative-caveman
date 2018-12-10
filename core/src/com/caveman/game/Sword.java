@@ -19,9 +19,6 @@ public class Sword extends Items{
         super(effect, name);
         
         this.range = range;
-        
-        
-        
     }
     
     public int getRange(){

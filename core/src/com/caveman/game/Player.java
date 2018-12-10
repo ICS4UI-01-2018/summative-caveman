@@ -67,9 +67,8 @@ public class Player {
     public boolean alive(){
         if(health <= 0){
             return alive = false;
-        }else{
-            return alive = true;
         }
+        return true;
     }
     
     public void health(){
