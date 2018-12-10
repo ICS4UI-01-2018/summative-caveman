@@ -22,7 +22,6 @@ public class Player {
     private Rectangle player;
     private int speed;
     public int health;
-    private int maxhealth = 500;
     public int damage;
     private boolean collide;
     private int hitCount;
@@ -73,22 +72,13 @@ public class Player {
     }
     
     public void health(){
+        int iniHealth = 500;
+        health -= damage;
         
-    }
-    
-    public void collision(){
-        hitCount = 0;
-        
-        if(collide){
-            hitCount++;
-        }
-    }
-    
-    public boolean collide(){
-        if(collide == true){
-            return true;
-        }else{
-            return false;
+        if(health>=500){
+            health = 500;
+        }else if(health<=0){
+            health = 0;
         }
     }
     
