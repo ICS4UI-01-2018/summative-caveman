@@ -7,16 +7,13 @@ package com.caveman.game;
 
 /**
  *
- * @author choij2116
- * @author modia9548
- * @author tarra7926
  * @author macdn5071
  */
-public class Slasher extends Enemy {
-
+public class Shooter extends Enemy{
+     
     Player player;
 
-    public Slasher(int x, int y, int health, int damage, int speed, int attackRange) {
+    public Shooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
     }
 
