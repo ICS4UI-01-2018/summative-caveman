@@ -14,13 +14,12 @@ package com.caveman.game;
  */
 public abstract class Items {
     private int effect;
-    private int range;
     private String name;
     
     
-    public Items(int effect, int range, String name){
+    public Items(int effect, String name){
         this.effect = effect;
-        this.range = range;
+        
         this.name = name;
     }
     
@@ -28,10 +27,7 @@ public abstract class Items {
         return this.effect;
     }
     
-    public int getRange(){
-        return this.range;
-    }
-    
+   
     public String getName(){
         return this.name;
     }

@@ -13,12 +13,18 @@ package com.caveman.game;
  * @author macdn5071
  */
 public class Sword extends Items{
-    
+    private int range;
     
     public Sword(int effect, int range, String name){
+        super(effect, name);
+        
+        this.range = range;
         
         
         
-        
+    }
+    
+    public int getRange(){
+        return this.range;
     }
 }
