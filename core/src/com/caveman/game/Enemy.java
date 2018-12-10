@@ -20,16 +20,18 @@ public class Enemy {
     public int health;
     public int damage;
     public int speed;
+    public int attackRange;
     public boolean collide;
     public boolean dead;
     Player player;
 
-    public Enemy(int x, int y, int health, int damage, int speed) {
+    public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
         this.yPos = y;
         this.health = health;
         this.damage = damage;
         this.speed = speed;
+        this.attackRange = attackRange;
     }
 
     public int getEnemyX() {
@@ -48,22 +50,23 @@ public class Enemy {
         int playX = player.getPlayerX();
         int playY = player.getPlayerY();
         if (dead == false) {
-            if (this.xPos > playX) {
-                this.xPos = xPos - speed;
-            } else if (this.xPos < playX) {
-                this.xPos = xPos + speed;
-            } else {
-                this.xPos = xPos;
-            }
-            if (this.yPos > playY) {
-                this.yPos = yPos - speed;
-            } else if (this.yPos < playY) {
-                this.yPos = yPos + speed;
-            } else {
-                this.yPos = yPos;
+            if (player.getPlayerX() <= attackRange * 4) {
+                if (this.xPos > playX) {
+                    this.xPos = xPos - speed;
+                } else if (this.xPos < playX) {
+                    this.xPos = xPos + speed;
+                } else {
+                    this.xPos = xPos;
+                }
+                if (this.yPos > playY) {
+                    this.yPos = yPos - speed;
+                } else if (this.yPos < playY) {
+                    this.yPos = yPos + speed;
+                } else {
+                    this.yPos = yPos;
+                }
             }
         } else if (dead == true) {
-
         }
     }
 
