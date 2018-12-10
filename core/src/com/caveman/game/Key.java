@@ -9,15 +9,12 @@ package com.caveman.game;
  *
  * @author modia9548
  */
-public class Food extends Items {
+public class Key extends Items{
     
     
-    public Food(int effect, String name){
-        
+    public Key(int effect, String name ){
         super(effect, name);
-        
-         
-        
     }
+    
     
 }

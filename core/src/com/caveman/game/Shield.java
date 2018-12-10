@@ -9,15 +9,10 @@ package com.caveman.game;
  *
  * @author modia9548
  */
-public class Food extends Items {
+public class Shield extends Items {
     
-    
-    public Food(int effect, String name){
-        
+    public Shield(int effect, String name){
         super(effect, name);
-        
-         
-        
     }
     
 }
