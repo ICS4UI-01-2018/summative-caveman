@@ -11,8 +11,19 @@ package com.caveman.game;
  */
 public class Shield extends Items {
     
+    private int range;
+    Enemy enemy;
     
-    public Sword(int range){
+    public Shield(int effect, String name, int range){
+        super(effect,name);
+        this.range = range;
         
+        if(enemy.attack == true){
+            enemy.attack = false;
+        }
+    }
+    
+    public int getRange(){
+        return this.range;
     }
 }

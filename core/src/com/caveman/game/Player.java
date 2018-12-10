@@ -26,6 +26,7 @@ public class Player {
     private boolean collide;
     private int hitCount;
     private boolean alive;
+    Items items;
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;

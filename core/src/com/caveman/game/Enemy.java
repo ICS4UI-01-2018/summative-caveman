@@ -24,6 +24,7 @@ public class Enemy {
     public boolean collide;
     public boolean dead;
     Player player;
+    public boolean attack;
 
     public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
@@ -92,4 +93,11 @@ public class Enemy {
 
     }
 
+    public boolean attack(){
+        if(attack== true){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
