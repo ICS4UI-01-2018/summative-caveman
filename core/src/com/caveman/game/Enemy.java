@@ -45,6 +45,10 @@ public class Enemy {
     public void move() {
 
     }
+    
+    public void health(){
+        
+    }
 
     public void trackPlayer(Player player) {
         int playX = player.getPlayerX();
