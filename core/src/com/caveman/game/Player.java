@@ -31,11 +31,11 @@ public class Player {
     }
     
     public float getPlayerX(){
-        return this.x;
+        return player.x;
     }
     
     public float getPlayerY(){
-        return this.y;
+        return player.y;
     }
     
     public void pickUpDropItems(){
@@ -91,5 +91,11 @@ public class Player {
     }
     public void draw(ShapeRenderer shapeBatch){
         shapeBatch.rect(player.x, player.y, player.width, player.height);
+    }
+     public boolean collidesWith(Rectangle rect) {
+        return player.overlaps(rect);
+    }
+      public Rectangle getBounds() {
+        return player;
     }
 }
