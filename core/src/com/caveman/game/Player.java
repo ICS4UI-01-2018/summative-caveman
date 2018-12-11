@@ -26,6 +26,7 @@ public class Player {
     private boolean collide;
     private int hitCount;
     private boolean alive;
+    Items items;
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
@@ -66,9 +67,8 @@ public class Player {
     public boolean alive(){
         if(health <= 0){
             return alive = false;
-        }else{
-            return alive = true;
         }
+        return true;
     }
     
     public void health(){

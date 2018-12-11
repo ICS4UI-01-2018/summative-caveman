@@ -12,11 +12,21 @@ package com.caveman.game;
  * @author tarra7926
  * @author macdn5071
  */
-public class Food extends Items {
+public class Shield extends Items {
     
+    private int range;
+    Enemy enemy;
     
-    public food(int effect, String name){
+    public Shield(int effect, String name, int range){
+        super(effect,name);
+        this.range = range;
         
+        if(enemy.attack == true){
+            enemy.attack = false;
+        }
     }
     
+    public int getRange(){
+        return this.range;
+    }
 }
