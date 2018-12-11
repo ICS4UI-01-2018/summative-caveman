@@ -17,11 +17,19 @@ public class Shooter extends Enemy{
         super(x, y, health, damage, speed, attackRange);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getEnemyX() {
         return this.xPos;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getEnemyY() {
         return this.yPos;
@@ -36,9 +44,20 @@ public class Shooter extends Enemy{
         super.trackPlayer(player);
     }
 
+    /**
+     *
+     */
     @Override
     public void move() {
 
+    }
+    
+    /**
+     *
+     */
+    @Override
+    public void health(){
+        this.health = 150;
     }
 
     public void attack(int damage, int attackRange, Player player) {

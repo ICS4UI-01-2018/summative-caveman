@@ -7,16 +7,13 @@ package com.caveman.game;
 
 /**
  *
- * @author choij2116
- * @author modia9548
- * @author tarra7926
  * @author macdn5071
  */
-public class Slasher extends Enemy {
-
+public class FastShooter extends Shooter{
+    
     Player player;
 
-    public Slasher(int x, int y, int health, int damage, int speed, int attackRange) {
+    public FastShooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
     }
 
@@ -46,22 +43,7 @@ public class Slasher extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-    
-    /**
-     *
-     */
-    @Override
-    public void move() {
-        
-    }
-    
-    /**
-     *
-     */
-    @Override
-    public void health(){
-        this.health = 300;
-    }
+
 
     public void attack(int damage, int attackRange, Player player) {
         if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
