@@ -9,37 +9,46 @@ package com.caveman.game;
  *
  * @author macdn5071
  */
-public class Slasher extends Enemy{
+public class Slasher extends Enemy {
+
     
-    private int attackRange;
-    
-    public Slasher(float x, float y, int health, int damage, int speed){
-        super(x, y, health, damage, speed);
+
+    public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
+        super(x, y, health, damage, speed, attackRange);
+        this.speed = 10;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public float getEnemyX() {
+        return this.xPos;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public float getEnemyY() {
+        return this.yPos;
+    }
+
+    /**
+     *
+     * @param player
+     */
+    @Override
+    public void trackPlayer(Player player) {
+        super.trackPlayer(player);
     }
     
     @Override
-    public void move(){
-        
+    public void health(){
+        this.health = 300;
     }
+
     
-    @Override
-    public void trackPlayer(){
-        
-    }
-    
-    @Override
-    public void collision(){
-        
-    }
-    
-    @Override
-    public boolean collide(){
-        return collide = true;
-    }
-    
-    public void attack(int damage, int attackRange, Player player){
-        if(player.x || player.y =< attackRange){
-            player.health = player.health - damage;
-        }
-    }
 }
