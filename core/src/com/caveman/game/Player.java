@@ -7,6 +7,7 @@ package com.caveman.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +28,8 @@ public class Player {
     private int hitCount;
     private boolean alive;
     Items items;
+    public ArrayList<Items> itemBag;
+
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
