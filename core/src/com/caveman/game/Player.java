@@ -7,6 +7,7 @@ package com.caveman.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +27,9 @@ public class Player {
     private boolean collide;
     private int hitCount;
     private boolean alive;
+    Items items;
+    public ArrayList<Items> itemBag;
+
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
@@ -67,8 +71,24 @@ public class Player {
         if(health <= 0){
             return alive = false;
         }else{
-            return alive = true;
+            return true;
         }
+    }
+    
+    public void collision(){
+        hitCount = 0;
+        
+        if(collide){
+            hitCount++;
+        }
+    }
+    
+    public boolean collide(){
+        if(collide == true){
+        return true;
+        }else{
+            return false;
+    }
     }
     
     public void health(){
@@ -85,4 +105,12 @@ public class Player {
     public void draw(ShapeRenderer shapeBatch){
         shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
+    
+    public boolean collidesWith(Rectangle rect) {
+        return player.overlaps(rect);
+    }
+    
+    public Rectangle getBounds() {
+        return player;
+    }   
 }

@@ -9,19 +9,31 @@ package com.caveman.game;
  *
  * @author macdn5071
  */
-public class Shooter extends Enemy{
-     
+public class Shooter extends Enemy {
+
     Player player;
+    private int attackSpeed = 5;
 
     public Shooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
+        this.attackSpeed = attackSpeed;
+        this.attackRange = 200;
+        this.speed = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getEnemyX() {
         return this.xPos;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getEnemyY() {
         return this.yPos;
@@ -36,9 +48,20 @@ public class Shooter extends Enemy{
         super.trackPlayer(player);
     }
 
+    /**
+     *
+     */
     @Override
     public void move() {
 
+    }
+    
+    /**
+     *
+     */
+    @Override
+    public void health(){
+        this.health = 150;
     }
 
     public void attack(int damage, int attackRange, Player player) {
