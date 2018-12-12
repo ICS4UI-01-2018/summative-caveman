@@ -14,8 +14,8 @@ package com.caveman.game;
  */
 public class Enemy {
 
-    int xPos;
-    int yPos;
+    float xPos;
+    float yPos;
 
     public int health;
     public int damage;
@@ -25,8 +25,9 @@ public class Enemy {
     public boolean dead;
     Player player;
     public boolean attack;
+    public boolean tracking;
 
-    public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
+    public Enemy(float x, float y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
         this.yPos = y;
         this.health = health;
@@ -35,44 +36,51 @@ public class Enemy {
         this.attackRange = attackRange;
     }
 
-    public int getEnemyX() {
+    public float getEnemyX() {
         return this.xPos;
     }
 
-    public int getEnemyY() {
+    public float getEnemyY() {
         return this.yPos;
     }
 
-    public void move() {
+    public void health() {
 
-    }
-    
-    public void health(){
-        
     }
 
     public void trackPlayer(Player player) {
-        int playX = player.getPlayerX();
-        int playY = player.getPlayerY();
+        float playX = player.getPlayerX();
+        float playY = player.getPlayerY();
         if (dead == false) {
             if (player.getPlayerX() <= attackRange * 4) {
                 if (this.xPos > playX) {
                     this.xPos = xPos - speed;
+                    tracking = true;
                 } else if (this.xPos < playX) {
                     this.xPos = xPos + speed;
+                    tracking = true;
                 } else {
                     this.xPos = xPos;
+                    tracking = false;
                 }
                 if (this.yPos > playY) {
                     this.yPos = yPos - speed;
+                    tracking = true;
                 } else if (this.yPos < playY) {
                     this.yPos = yPos + speed;
+                    tracking = true;
                 } else {
                     this.yPos = yPos;
+                    tracking = false;
                 }
             }
         } else if (dead == true) {
+            tracking = false;
         }
+    }
+
+    public boolean track() {
+        return tracking == true;
     }
 
     public void dying() {
@@ -82,25 +90,31 @@ public class Enemy {
     }
 
     public boolean hasDied() {
-        if (dead == true) {
-            return true;
+        return dead == true;
+    }
+
+    public void attack(int damage, int attackRange, Player player) {
+        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
+            player.health = player.health - damage;
+            attack = true;
+        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
+            player.health = player.health - damage;
+            attack = true;
+        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
+            player.health = player.health - damage;
+            attack = true;
+        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
+            player.health = player.health - damage;
+            attack = true;
         } else {
-            return false;
+            attack = false;
         }
     }
 
-    /**
-     *
-     * @param damage
-     */
-    public void attack(int damage) {
-
-    }
-
-    public boolean attack(){
-        if(attack== true){
+    public boolean attacking() {
+        if (attack == true) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
