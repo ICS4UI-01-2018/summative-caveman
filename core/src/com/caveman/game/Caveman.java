@@ -24,11 +24,7 @@ public class Caveman extends ApplicationAdapter {
     private ArrayList<Rectangle> walls;
     private OrthographicCamera cam;
     private FitViewport viewport;
-    private Rectangle wall1;
-    private Rectangle wall2;
-    private Rectangle wall3;
-    private Rectangle wall4;
-    private Enemy enemy;
+    private ArrayList<Enemy> enemies;
     private boolean upAllowed;
     private boolean leftAllowed;
     private boolean rightAllowed;
@@ -39,6 +35,7 @@ public class Caveman extends ApplicationAdapter {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
         walls = new ArrayList<Rectangle>();
+        enemies = new ArrayList<Enemy>();
         //img = new Texture("badlogic.jpg");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
@@ -52,7 +49,7 @@ public class Caveman extends ApplicationAdapter {
         leftAllowed = true;
 
         player = new Player(390, 290, 20, 20, 5, 4);
-
+        //enemies.add(new Rectangle(300, 150, 3, 3, 4));
         walls.add(new Rectangle(25, 100, 25, 400));
         walls.add(new Rectangle(750, 100, 25, 400));
         walls.add(new Rectangle(25, 75, 750, 25));
@@ -95,8 +92,9 @@ public class Caveman extends ApplicationAdapter {
             player.moveDown();
         }
         
-        
-        
+        cam.position.x = player.getPlayerX() + (player.getBounds().width/2);
+        cam.position.y = player.getPlayerY() + (player.getBounds().height/2);
+        cam.update();
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
 

@@ -40,7 +40,7 @@ public class Enemy {
     }
     
     public void trackPlayer(Player player){
-
+        if(player.)
     }
     
     public void collision(){
