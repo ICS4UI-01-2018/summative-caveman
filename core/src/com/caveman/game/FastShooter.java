@@ -12,9 +12,14 @@ package com.caveman.game;
 public class FastShooter extends Shooter{
     
     Player player;
+    
+    private int attackSpeed = 10;
 
     public FastShooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
+        this.attackSpeed = attackSpeed;
+        this.attackRange = super.attackRange;
+        this.speed = 5;
     }
 
     /**
@@ -43,17 +48,9 @@ public class FastShooter extends Shooter{
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-
-
-    public void attack(int damage, int attackRange, Player player) {
-        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
-            player.health = player.health - damage;
-        }
+    
+    @Override
+    public void health(){
+        this.health = super.health;
     }
 }

@@ -28,7 +28,7 @@ public class Sword extends Items{
         return this.range;
     }
     
-    public void Attack(int damage){ 
+    public void Attack(int damage){
         if(Attack == true){
             if(enemy.xPos <= player.x + range && enemy.xPos >= player.x - range){
                 if(enemy.yPos <= player.y + range && enemy.yPos <= player.y + range){

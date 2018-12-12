@@ -25,6 +25,7 @@ public class Enemy {
     public boolean dead;
     Player player;
     public boolean attack;
+    public boolean tracking;
 
     public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
@@ -102,6 +103,6 @@ public class Enemy {
             return true;
         }else{
             return false;
-        }
+    }
     }
 }

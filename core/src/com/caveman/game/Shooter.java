@@ -9,12 +9,16 @@ package com.caveman.game;
  *
  * @author macdn5071
  */
-public class Shooter extends Enemy{
-     
+public class Shooter extends Enemy {
+
     Player player;
+    private int attackSpeed = 5;
 
     public Shooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
+        this.attackSpeed = attackSpeed;
+        this.attackRange = 200;
+        this.speed = 0;
     }
 
     /**
