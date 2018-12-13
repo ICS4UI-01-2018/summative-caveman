@@ -7,12 +7,16 @@ package com.caveman.game;
 
 /**
  *
+ * @author choij2116
+ * @author modia9548
+ * @author tarra7926
  * @author macdn5071
  */
 public class Shooter extends Enemy {
 
     Player player;
     private int attackSpeed = 5;
+    private boolean Attack;
 
     public Shooter(int x, int y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
@@ -65,14 +69,21 @@ public class Shooter extends Enemy {
     }
 
     public void attack(int damage, int attackRange, Player player) {
-        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
-            player.health = player.health - damage;
-        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
-            player.health = player.health - damage;
+        if(Attack == true){
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    player.health = player.health - damage;
+                    Attack = false;
+                } 
+            }
+        }
+    }
+    
+    public boolean Attacking(){
+        if(Attack == true){
+            return true;
+        }else{
+            return false;
         }
     }
 }

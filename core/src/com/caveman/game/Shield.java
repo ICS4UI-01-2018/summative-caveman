@@ -22,9 +22,6 @@ public class Shield extends Items {
     }
     
     public void Shield(){
-        player.getPlayerX();
-        player.getPlayerY();
-        
         if(enemy.xPos <= player.x + enemy.attackRange && enemy.xPos >= player.x - enemy.attackRange){
             if(enemy.yPos <= player.y + enemy.attackRange && enemy.yPos >= player.y - enemy.attackRange){
                 if(enemy.attack == true){

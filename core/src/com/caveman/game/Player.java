@@ -29,6 +29,7 @@ public class Player {
     private boolean alive;
     Items items;
     public ArrayList<Items> itemBag;
+    public boolean pickUp;
 
     
     public Player(int x, int y, int width, int height, int health, int speed){
