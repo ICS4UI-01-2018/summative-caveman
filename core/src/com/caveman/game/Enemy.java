@@ -27,7 +27,6 @@ public class Enemy {
     public boolean attack;
     public boolean tracking;
 
-
     /**
      *
      * @param x
@@ -96,6 +95,7 @@ public class Enemy {
                 }
             }
         } else if (dead == true) {
+
         }
     }
 

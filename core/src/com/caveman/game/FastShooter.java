@@ -12,10 +12,10 @@ package com.caveman.game;
  * @author tarra7926
  * @author macdn5071
  */
-public class FastShooter extends Shooter{
-    
+public class FastShooter extends Shooter {
+
     Player player;
-    
+
     private int attackSpeed = 15;
 
     public FastShooter(float x, float y, int health, int damage, int speed, int attackRange) {
@@ -52,9 +52,9 @@ public class FastShooter extends Shooter{
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-    
+
     @Override
-    public void health(){
+    public void health() {
         this.health = super.health;
     }
 }

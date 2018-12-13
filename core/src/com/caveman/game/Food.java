@@ -13,10 +13,9 @@ package com.caveman.game;
  * @author macdn5071
  */
 public class Food extends Items {
-    
-    
-    public food(int effect, String name){
-        
+
+    public food(int effect, String name) {
+
     }
-    
+
 }

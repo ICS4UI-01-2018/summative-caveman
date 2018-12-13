@@ -9,25 +9,25 @@ package com.caveman.game;
  *
  * @author macdn5071
  */
-public class Boss extends Slasher{
-    
+public class Boss extends Slasher {
+
     public Boss(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.speed = super.speed;
     }
-    
+
     @Override
-    public float getEnemyX(){
+    public float getEnemyX() {
         return this.xPos;
     }
-    
+
     @Override
-    public float getEnemyY(){
+    public float getEnemyY() {
         return this.xPos;
     }
-    
+
     @Override
-    public void health(){
+    public void health() {
         this.health = 1000;
     }
 }

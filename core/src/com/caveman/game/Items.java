@@ -13,29 +13,22 @@ package com.caveman.game;
  * @author macdn5071
  */
 public abstract class Items {
+
     private int effect;
     private String name;
-    
-    
-    public Items(int effect, String name){
+
+    public Items(int effect, String name) {
         this.effect = effect;
-        
+
         this.name = name;
     }
-    
-    public int getEffect(){
+
+    public int getEffect() {
         return this.effect;
     }
-    
-   
-    public String getName(){
+
+    public String getName() {
         return this.name;
     }
-    
-    
-    
-    
-      
-    
-    
+
 }
