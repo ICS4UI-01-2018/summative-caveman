@@ -157,22 +157,4 @@ public class Enemy {
         return attack == true;
     }
 
-    /**
-     *
-     * @param damage
-     */
-    public void attack(int damage) {
-
-    }
-
-   
-
-
-    public boolean attack(){
-        if(attack== true){
-            return true;
-        }else{
-            return false;
-    }
-    }
 }
