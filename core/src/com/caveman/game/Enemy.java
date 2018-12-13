@@ -73,34 +73,28 @@ public class Enemy {
      * @param player
      */
     public void trackPlayer(Player player) {
-        float playX = player.getPlayerX();
-        float playY = player.getPlayerY();
+        int playX = player.getPlayerX();
+        int playY = player.getPlayerY();
         if (dead == false) {
             if (player.getPlayerX() <= attackRange * 3) {
                 if (this.xPos > playX) {
                     this.xPos = xPos - speed;
-                    tracking = true;
                 } else if (this.xPos < playX) {
                     this.xPos = xPos + speed;
-                    tracking = true;
                 } else {
                     this.xPos = xPos;
-                    tracking = false;
                 }
                 if (this.yPos > playY) {
                     this.yPos = yPos - speed;
-                    tracking = true;
                 } else if (this.yPos < playY) {
                     this.yPos = yPos + speed;
-                    tracking = true;
                 } else {
                     this.yPos = yPos;
-                    tracking = false;
                 }
             }
         } else if (dead == true) {
-            tracking = false;
         }
+
     }
 
     /**
@@ -158,5 +152,21 @@ public class Enemy {
      */
     public boolean attacking() {
         return attack == true;
+    }
+
+    /**
+     *
+     * @param damage
+     */
+    public void attack(int damage) {
+
+    }
+
+    public boolean attack(){
+        if(attack== true){
+            return true;
+        }else{
+            return false;
+    }
     }
 }

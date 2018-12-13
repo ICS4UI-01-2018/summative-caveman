@@ -48,14 +48,24 @@ public class Shooter extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-
+    
     /**
      *
      */
     @Override
-    public void health() {
+    public void health(){
         this.health = 150;
     }
 
-    
+    public void attack(int damage, int attackRange, Player player) {
+        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
+            player.health = player.health - damage;
+        }
+    }
 }

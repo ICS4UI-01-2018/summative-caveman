@@ -14,7 +14,7 @@ package com.caveman.game;
  */
 public class Slasher extends Enemy {
 
-    
+    Player player;
 
     public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
@@ -56,5 +56,16 @@ public class Slasher extends Enemy {
         this.health = 300;
     }
 
-    
+    @Override
+    public void attack(int damage, int attackRange, Player player) {
+        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
+            player.health = player.health - damage;
+        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
+            player.health = player.health - damage;
+        }
+    }
 }

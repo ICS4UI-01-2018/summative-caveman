@@ -11,6 +11,7 @@ package com.caveman.game;
  */
 public class FastShooter extends Shooter{
     
+    Player player;
     
     private int attackSpeed = 15;
 
@@ -53,6 +54,4 @@ public class FastShooter extends Shooter{
     public void health(){
         this.health = super.health;
     }
-
-    
 }
