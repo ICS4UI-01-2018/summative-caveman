@@ -14,9 +14,6 @@ package com.caveman.game;
  */
 public class Sword extends Items{
     private int range;
-    Enemy enemy;
-    Player player; 
-    private boolean Attack;
     
     public Sword(int effect, int range, String name){
         super(effect, name);
@@ -26,26 +23,5 @@ public class Sword extends Items{
     
     public int getRange(){
         return this.range;
-    }
-    
-    public void Attack(int damage){
-        if(Attack == true){
-            if(enemy.xPos <= player.x + range && enemy.xPos >= player.x - range){
-                if(enemy.yPos <= player.y + range && enemy.yPos <= player.y + range){
-                    enemy.health = enemy.health - damage;
-                    Attack = false;
-                }
-            }
-        }else{
-            // nothing
-        }
-    }
-    
-    public boolean Attacking(){
-        if(Attack == true){
-            return true;
-        }else{
-            return false;
-        }
     }
 }
