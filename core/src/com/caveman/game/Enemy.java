@@ -27,6 +27,7 @@ public class Enemy {
     public boolean attack;
     public boolean tracking;
 
+
     /**
      *
      * @param x
@@ -50,6 +51,7 @@ public class Enemy {
      * @return
      */
     public float getEnemyX() {
+
         return this.xPos;
     }
 
@@ -58,6 +60,7 @@ public class Enemy {
      * @return
      */
     public float getEnemyY() {
+
         return this.yPos;
     }
 
@@ -94,7 +97,6 @@ public class Enemy {
             }
         } else if (dead == true) {
         }
-
     }
 
     /**
@@ -119,6 +121,7 @@ public class Enemy {
      * @return
      */
     public boolean hasDied() {
+
         return dead == true;
     }
 
@@ -161,6 +164,9 @@ public class Enemy {
     public void attack(int damage) {
 
     }
+
+   
+
 
     public boolean attack(){
         if(attack== true){
