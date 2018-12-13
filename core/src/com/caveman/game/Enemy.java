@@ -27,6 +27,15 @@ public class Enemy {
     public boolean attack;
     public boolean tracking;
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param health
+     * @param damage
+     * @param speed
+     * @param attackRange
+     */
     public Enemy(float x, float y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
         this.yPos = y;
@@ -36,23 +45,38 @@ public class Enemy {
         this.attackRange = attackRange;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getEnemyX() {
         return this.xPos;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getEnemyY() {
         return this.yPos;
     }
 
+    /**
+     *
+     */
     public void health() {
 
     }
 
+    /**
+     *
+     * @param player
+     */
     public void trackPlayer(Player player) {
         float playX = player.getPlayerX();
         float playY = player.getPlayerY();
         if (dead == false) {
-            if (player.getPlayerX() <= attackRange * 4) {
+            if (player.getPlayerX() <= attackRange * 3) {
                 if (this.xPos > playX) {
                     this.xPos = xPos - speed;
                     tracking = true;
@@ -79,20 +103,37 @@ public class Enemy {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean track() {
         return tracking == true;
     }
 
+    /**
+     *
+     */
     public void dying() {
         if (health <= 0) {
             dead = true;
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasDied() {
         return dead == true;
     }
 
+    /**
+     *
+     * @param damage
+     * @param attackRange
+     * @param player
+     */
     public void attack(int damage, int attackRange, Player player) {
         if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
             player.health = player.health - damage;
@@ -111,11 +152,11 @@ public class Enemy {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean attacking() {
-        if (attack == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return attack == true;
     }
 }

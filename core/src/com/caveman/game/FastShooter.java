@@ -12,12 +12,13 @@ package com.caveman.game;
 public class FastShooter extends Shooter{
     
     
-    private int attackSpeed = 10;
+    private int attackSpeed = 15;
 
     public FastShooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.attackSpeed = attackSpeed;
         this.attackRange = super.attackRange;
+        this.damage = 215;
         this.speed = 5;
     }
 
