@@ -7,7 +7,6 @@ package com.caveman.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import java.util.ArrayList;
 
 /**
  *
@@ -108,7 +107,7 @@ public class Player {
     
     public boolean collidesWith(Rectangle rect) {
         return player.overlaps(rect);
-    }
+}
     
     public Rectangle getBounds() {
         return player;

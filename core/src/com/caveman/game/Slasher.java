@@ -17,8 +17,9 @@ public class Slasher extends Enemy {
     Player player;
     Enemy enemy;
 
-    public Slasher(int x, int y, int health, int damage, int speed, int attackRange) {
+    public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
+        this.speed = 15;
     }
 
     /**
@@ -26,7 +27,7 @@ public class Slasher extends Enemy {
      * @return
      */
     @Override
-    public int getEnemyX() {
+    public float getEnemyX() {
         return this.xPos;
     }
 
@@ -35,7 +36,7 @@ public class Slasher extends Enemy {
      * @return
      */
     @Override
-    public int getEnemyY() {
+    public float getEnemyY() {
         return this.yPos;
     }
 
@@ -47,20 +48,12 @@ public class Slasher extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-    
+
     /**
      *
      */
     @Override
-    public void move() {
-        
-    }
-    
-    /**
-     *
-     */
-    @Override
-    public void health(){
+    public void health() {
         this.health = 300;
     }
 

@@ -19,9 +19,10 @@ public class Shooter extends Enemy {
     private int attackSpeed = 5;
     private boolean Attack;
 
-    public Shooter(int x, int y, int health, int damage, int speed, int attackRange) {
+    public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.attackSpeed = attackSpeed;
+        this.damage = 100;
         this.attackRange = 200;
         this.speed = 0;
     }
@@ -31,7 +32,7 @@ public class Shooter extends Enemy {
      * @return
      */
     @Override
-    public int getEnemyX() {
+    public float getEnemyX() {
         return this.xPos;
     }
 
@@ -40,7 +41,7 @@ public class Shooter extends Enemy {
      * @return
      */
     @Override
-    public int getEnemyY() {
+    public float getEnemyY() {
         return this.yPos;
     }
 
@@ -52,14 +53,8 @@ public class Shooter extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
+    
 
-    /**
-     *
-     */
-    @Override
-    public void move() {
-
-    }
     
     /**
      *

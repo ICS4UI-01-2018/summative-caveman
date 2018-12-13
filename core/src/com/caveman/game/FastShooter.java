@@ -16,12 +16,13 @@ public class FastShooter extends Shooter{
     
     Player player;
     
-    private int attackSpeed = 10;
+    private int attackSpeed = 15;
 
-    public FastShooter(int x, int y, int health, int damage, int speed, int attackRange) {
+    public FastShooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.attackSpeed = attackSpeed;
         this.attackRange = super.attackRange;
+        this.damage = 215;
         this.speed = 5;
     }
 
@@ -30,7 +31,7 @@ public class FastShooter extends Shooter{
      * @return
      */
     @Override
-    public int getEnemyX() {
+    public float getEnemyX() {
         return this.xPos;
     }
 
@@ -39,7 +40,7 @@ public class FastShooter extends Shooter{
      * @return
      */
     @Override
-    public int getEnemyY() {
+    public float getEnemyY() {
         return this.yPos;
     }
 
