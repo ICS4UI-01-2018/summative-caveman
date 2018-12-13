@@ -74,22 +74,6 @@ public class Player {
         }
     }
     
-    public void collision(){
-        hitCount = 0;
-        
-        if(collide){
-            hitCount++;
-        }
-    }
-    
-    public boolean collide(){
-        if(collide == true){
-        return true;
-        }else{
-            return false;
-    }
-    }
-    
     public void health(){
         int iniHealth = 500;
         health -= damage;
