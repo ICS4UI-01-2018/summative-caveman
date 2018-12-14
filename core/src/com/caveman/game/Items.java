@@ -18,6 +18,7 @@ public abstract class Items {
     
     
     public Items(int effect, String name){
+        
         this.effect = effect;
         
         this.name = name;

@@ -14,9 +14,28 @@ package com.caveman.game;
  */
 public class Food extends Items {
     
+    Player player;
+    private boolean eaten; 
     
-    public food(int effect, String name){
+   
         
+
+    public Food(int effect, String name){
+        super(effect, name);
+    }
+        
+    public void Heal(){
+        if(eaten == true){
+            player.health = player.health + 100;
+            eaten = false;
+    }
     }
     
+    public boolean eat(){
+        if(eaten == true){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

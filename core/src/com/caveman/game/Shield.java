@@ -14,6 +14,7 @@ package com.caveman.game;
  */
 public class Shield extends Items {
     
+    Player player;
     private int range;
     Enemy enemy;
     
@@ -28,5 +29,15 @@ public class Shield extends Items {
     
     public int getRange(){
         return this.range;
+    }
+    
+    public void Shield(){
+        if(enemy.xPos <= player.x + enemy.attackRange && enemy.xPos >= player.x - enemy.attackRange){
+            if(enemy.yPos <= player.y + enemy.attackRange && enemy.yPos >= player.y - enemy.attackRange){
+                if(enemy.attack == true){
+                    enemy.attack = false;
+                }
+            }
+        }
     }
 }

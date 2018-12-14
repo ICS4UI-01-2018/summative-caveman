@@ -27,6 +27,9 @@ public class Player {
     private int hitCount;
     private boolean alive;
     Items items;
+
+    private boolean pickUp;
+
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
@@ -69,6 +72,7 @@ public class Player {
             return alive = false;
         }
         return true;
+
     }
     
     public void health(){
@@ -85,4 +89,13 @@ public class Player {
     public void draw(ShapeRenderer shapeBatch){
         shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
+
+    
+    public boolean collidesWith(Rectangle rect) {
+        return player.overlaps(rect);
+}
+    
+    public Rectangle getBounds() {
+        return player;
+    }   
 }
