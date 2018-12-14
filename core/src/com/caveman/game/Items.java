@@ -18,7 +18,7 @@ public abstract class Items {
     
     
     public Items(int effect, String name){
-        this.effect = effect;
+        this.effect = 15;
         
         this.name = name;
     }

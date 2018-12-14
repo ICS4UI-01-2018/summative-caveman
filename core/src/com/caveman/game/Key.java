@@ -11,7 +11,7 @@ package com.caveman.game;
  */
 public class Key extends Items{
     Player player;
-    public boolean unlock;
+    private boolean unlock;
     
     public Key(int effect, String name ){
         super(effect, name);
