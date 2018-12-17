@@ -16,9 +16,9 @@ import com.badlogic.gdx.math.Rectangle;
  * @author macdn5071
  */
 public class Player {
-
-    public int x;
-    public int y;
+    
+    public float x;
+    public float y;
     private Rectangle player;
     private int speed;
     public int health;
@@ -38,19 +38,19 @@ public class Player {
     private int numShield = 0;
 
     
-    public Player(int x, int y, int width, int height, int health, int speed){
+    public Player(float x, float y, int width, int height, int health, int speed){
         this.x = x;
         this.y = y; 
         this.speed = 5;
         player = new Rectangle(x,y,width,height);
         this.health = 500;
     }
-
-    public int getPlayerX() {
+    
+    public float getPlayerX(){
         return this.x;
     }
-
-    public int getPlayerY() {
+    
+    public float getPlayerY(){
         return this.y;
     }
     
@@ -74,19 +74,22 @@ public class Player {
     }
     
     public void usingItems(){
-        if(useItems == true){
-            if(items == food){
-                food.Heal();
-                numFood--;
-            }else if(items == key){
-                
-            }else if(items == shield){
-                shield.Shield();
-                numShield--;
+        if(numItems > 0){
+            if(useItems == true){
+                if(items == food && numFood > 0){
+                    food.Heal();
+                    numFood--;
+                }else if(items == key && numKey > 0){
+
+                }else if(items == shield && numShield > 0){
+                    shield.Shield();
+                    numShield--;
+                }
+                useItems = false;
             }
+        }else if(numItems <= 0){
             useItems = false;
         }
-        
     }
 
     public void moveUp() {
