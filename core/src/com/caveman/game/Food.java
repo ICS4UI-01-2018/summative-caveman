@@ -28,7 +28,7 @@ public class Food extends Items {
         if(eaten == true){
             player.health = player.health + 100;
             eaten = false;
-    }
+        }
     }
     
     public boolean eat(){

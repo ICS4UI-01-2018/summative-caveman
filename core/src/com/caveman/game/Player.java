@@ -27,16 +27,23 @@ public class Player {
     private int hitCount;
     private boolean alive;
     Items items;
-
     private boolean pickUp;
+    private boolean useItems;
+    private int numItems = 0;
+    Food food;
+    Key key;
+    Shield shield;
+    private int numFood = 0;
+    private int numKey = 0;
+    private int numShield = 0;
 
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
         this.y = y; 
-        this.speed = speed;
+        this.speed = 5;
         player = new Rectangle(x,y,width,height);
-        this.health = health;
+        this.health = 500;
     }
     
     public int getPlayerX(){
@@ -47,7 +54,38 @@ public class Player {
         return this.y;
     }
     
-    public void pickUpDropItems(){
+    public void pickUpItems(){
+        
+        if(numItems < 5){
+            if(pickUp == true){
+                if(items == food){
+                    numFood++;
+                }else if(items == key){
+                    numKey++;
+                }else if(items == shield){
+                    numShield++;
+                }
+                numItems++;
+                pickUp = false;
+            }
+        }else if(numItems >= 5){
+            pickUp = false;
+        }
+    }
+    
+    public void usingItems(){
+        if(useItems == true){
+            if(items == food){
+                food.Heal();
+                numFood--;
+            }else if(items == key){
+                
+            }else if(items == shield){
+                shield.Shield();
+                numShield--;
+            }
+            useItems = false;
+        }
         
     }
     
