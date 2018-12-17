@@ -21,6 +21,7 @@ public class Slasher extends Enemy {
         super(x, y, health, damage, speed, attackRange);
         this.speed = 15;
         this.attackRange = 10;
+        this.damage = 50;
     }
 
     /**
