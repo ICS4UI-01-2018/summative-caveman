@@ -16,11 +16,11 @@ public class Shooter extends Enemy {
 
     Player player;
     Enemy enemy;
-    private int attackSpeed = 5;
+    private int attackSpeed;
 
     public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
-        this.attackSpeed = attackSpeed;
+        this.attackSpeed = 5;
         this.damage = 100;
         this.attackRange = 200;
         this.speed = 0;
