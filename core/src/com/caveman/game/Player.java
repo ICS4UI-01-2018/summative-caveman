@@ -28,14 +28,22 @@ public class Player {
     private boolean alive;
     Items items;
     private boolean pickUp;
+    private boolean useItems;
+    private int numItems = 0;
+    Food food;
+    Key key;
+    Shield shield;
+    private int numFood = 0;
+    private int numKey = 0;
+    private int numShield = 0;
 
     
     public Player(int x, int y, int width, int height, int health, int speed){
         this.x = x;
-        this.y = y;
-        this.speed = speed;
-        player = new Rectangle(x, y, width, height);
-        this.health = health;
+        this.y = y; 
+        this.speed = 5;
+        player = new Rectangle(x,y,width,height);
+        this.health = 500;
     }
 
     public int getPlayerX() {
@@ -45,9 +53,40 @@ public class Player {
     public int getPlayerY() {
         return this.y;
     }
-
-    public void pickUpDropItems() {
-
+    
+    public void pickUpItems(){
+        
+        if(numItems < 5){
+            if(pickUp == true){
+                if(items == food){
+                    numFood++;
+                }else if(items == key){
+                    numKey++;
+                }else if(items == shield){
+                    numShield++;
+                }
+                numItems++;
+                pickUp = false;
+            }
+        }else if(numItems >= 5){
+            pickUp = false;
+        }
+    }
+    
+    public void usingItems(){
+        if(useItems == true){
+            if(items == food){
+                food.Heal();
+                numFood--;
+            }else if(items == key){
+                
+            }else if(items == shield){
+                shield.Shield();
+                numShield--;
+            }
+            useItems = false;
+        }
+        
     }
 
     public void moveUp() {
@@ -72,22 +111,6 @@ public class Player {
         }else{
             return true;
         }
-    }
-    
-    public void collision(){
-        hitCount = 0;
-        
-        if(collide){
-            hitCount++;
-        }
-    }
-    
-    public boolean collide(){
-        if(collide == true){
-        return true;
-        }else{
-            return false;
-    }
     }
 
     public void health() {

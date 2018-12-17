@@ -16,10 +16,11 @@ public abstract class Items {
 
     private int effect;
     private String name;
-
-    public Items(int effect, String name) {
-        this.effect = effect;
-
+    
+    
+    public Items(int effect, String name){
+        this.effect = 15;
+        
         this.name = name;
     }
 
