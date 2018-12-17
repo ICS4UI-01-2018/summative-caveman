@@ -14,6 +14,7 @@ public class Boss extends Slasher {
     public Boss(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.speed = super.speed;
+        this.attackRange = 20;
     }
 
     @Override

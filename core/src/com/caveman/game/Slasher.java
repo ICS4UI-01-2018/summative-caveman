@@ -20,6 +20,7 @@ public class Slasher extends Enemy {
     public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.speed = 15;
+        this.attackRange = 10;
     }
 
     /**
