@@ -21,7 +21,7 @@ public class Sword extends Items{
     public Sword(int effect, int range, String name){
         super(effect, name);
         
-        this.range = range;
+        this.range = 15;
     }
     
     public int getRange(){
