@@ -7,6 +7,9 @@ package com.caveman.game;
 
 /**
  *
+ * @author choij2116
+ * @author modia9548
+ * @author tarra7926
  * @author macdn5071
  */
 public class Slasher extends Enemy {
@@ -45,6 +48,9 @@ public class Slasher extends Enemy {
         super.trackPlayer(player);
     }
     
+    /**
+     *
+     */
     @Override
     public void health(){
         this.health = 300;

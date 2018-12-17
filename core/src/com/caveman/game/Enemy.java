@@ -8,44 +8,92 @@ package com.caveman.game;
 /**
  *
  * @author choij2116
+ * @author modia9548
+ * @author tarra7926
+ * @author macdn5071
  */
 public class Enemy {
 
-    float xPos;
-    float yPos;
+    int xPos;
+    int yPos;
 
     public int health;
     public int damage;
     public int speed;
+    public int attackRange;
     public boolean collide;
+    public boolean dead;
     Player player;
-    public boolean attack;
-    public boolean tracking;
 
-    public Enemy(float x, float y, int health, int damage, int speed, int attackRange) {
+    public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
         this.yPos = y;
         this.health = health;
         this.damage = damage;
         this.speed = speed;
-    }
-    }
-    
-    public void collision(){
-        
-    }
         this.attackRange = attackRange;
     }
 
-    public float getEnemyX() {
+    public int getEnemyX() {
         return this.xPos;
     }
 
-    public float getEnemyY() {
+    public int getEnemyY() {
         return this.yPos;
     }
 
-    public void health() {
+    public void move() {
 
     }
+    
+    public void health(){
+        
+    }
+
+    public void trackPlayer(Player player) {
+        int playX = player.getPlayerX();
+        int playY = player.getPlayerY();
+        if (dead == false) {
+            if (player.getPlayerX() <= attackRange * 4) {
+                if (this.xPos > playX) {
+                    this.xPos = xPos - speed;
+                } else if (this.xPos < playX) {
+                    this.xPos = xPos + speed;
+                } else {
+                    this.xPos = xPos;
+                }
+                if (this.yPos > playY) {
+                    this.yPos = yPos - speed;
+                } else if (this.yPos < playY) {
+                    this.yPos = yPos + speed;
+                } else {
+                    this.yPos = yPos;
+                }
+            }
+        } else if (dead == true) {
+        }
+    }
+
+    public void dying() {
+        if (health <= 0) {
+            dead = true;
+        }
+    }
+
+    public boolean hasDied() {
+        if (dead == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @param damage
+     */
+    public void attack(int damage) {
+
+    }
+
 }
