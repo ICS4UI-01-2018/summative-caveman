@@ -22,6 +22,7 @@ public class Caveman extends ApplicationAdapter {
     private Player player;
     // private ArrayList<Enemies> enemies;
     private ArrayList<Rectangle> walls;
+    private Rectangle healthBar;
     private OrthographicCamera cam;
     private FitViewport viewport;
     private ArrayList<Enemy> enemies;
@@ -29,6 +30,7 @@ public class Caveman extends ApplicationAdapter {
     private boolean leftAllowed;
     private boolean rightAllowed;
     private boolean downAllowed;
+    private int timer;
 
     @Override
     public void create() {
@@ -47,13 +49,19 @@ public class Caveman extends ApplicationAdapter {
         downAllowed = true;
         rightAllowed = true;
         leftAllowed = true;
-
+        healthBar = new Rectangle(100, 25, 600, 25);
         player = new Player(390, 290, 20, 20, 5, 4);
         //enemies.add(new Rectangle(300, 150, 3, 3, 4));
         walls.add(new Rectangle(25, 100, 25, 400));
         walls.add(new Rectangle(750, 100, 25, 400));
         walls.add(new Rectangle(25, 75, 750, 25));
-        walls.add(new Rectangle(25, 500, 750, 25));
+        walls.add(new Rectangle(25, 500, 325, 25));
+        walls.add(new Rectangle(450, 500, 325, 25));
+        walls.add(new Rectangle(325, 525, 25, 200));
+        walls.add(new Rectangle(450, 525, 25, 200));
+        walls.add(new Rectangle(-125, 700, 475, 25));
+        walls.add(new Rectangle(450, 700, 475, 25));
+        timer = 0;
 
     }
 
@@ -66,7 +74,7 @@ public class Caveman extends ApplicationAdapter {
         downAllowed = true;
         rightAllowed = true;
         leftAllowed = true;
-
+        
         for (int i = 0; i < walls.size(); i++) {
             if (player.collidesWith(walls.get(i)) && (player.getPlayerX() + 20) > (walls.get(i).x + walls.get(i).width)) {
                 leftAllowed = false;
@@ -76,6 +84,13 @@ public class Caveman extends ApplicationAdapter {
                 upAllowed = false;
             } else if (player.collidesWith(walls.get(i)) && (player.getPlayerY() + 20) > (walls.get(i).y + walls.get(i).height)) {
                 downAllowed = false;
+            }
+            if(player.collidesWith(walls.get(i)) && healthBar.width > 0 && timer == 0){
+                healthBar.width = healthBar.width - 25;
+                timer = 600;
+                
+            }else if(timer != 0){
+                timer = timer - 1;
             }
         }
 
@@ -91,21 +106,29 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && downAllowed) {
             player.moveDown();
         }
-        
-        cam.position.x = player.getPlayerX() + (player.getBounds().width/2);
-        cam.position.y = player.getPlayerY() + (player.getBounds().height/2);
+        for (int i = 0; i < enemies.size(); i++) {
+
+            //if(player.collidesWith(enemies.get(i))){
+            //}
+        }
+
+        healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
+
+        cam.position.x = player.getPlayerX() + (player.getBounds().width / 2);
+        cam.position.y = player.getPlayerY() + (player.getBounds().height / 2);
         cam.update();
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
-
+        shapeBatch.setColor(Color.GOLD);
+        
+        player.draw(shapeBatch);
         shapeBatch.setColor(Color.GRAY);
         for (int i = 0; i < walls.size(); i++) {
             shapeBatch.rect(walls.get(i).x, walls.get(i).y, walls.get(i).width, walls.get(i).height);
 
         }
-
-        player.draw(shapeBatch);
-
+           shapeBatch.setColor(Color.GREEN);
+        shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
