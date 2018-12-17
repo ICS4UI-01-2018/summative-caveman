@@ -76,8 +76,8 @@ public class Enemy {
      * @param player
      */
     public void trackPlayer(Player player) {
-        int playX = player.getPlayerX();
-        int playY = player.getPlayerY();
+        float playX = player.getPlayerX();
+        float playY = player.getPlayerY();
         if (dead == false) {
             if (player.getPlayerX() <= attackRange * 3) {
                 if (this.xPos > playX) {

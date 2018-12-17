@@ -22,9 +22,9 @@ public class Food extends Items {
     }
         
     public void Heal(){
-        if(eaten == true){
+        if(eaten == false){
             player.health = player.health + 100;
-            eaten = false;
+            eaten = true;
         }
     }
     
