@@ -19,7 +19,7 @@ public class Key extends Items{
     
     public void Open(){
         if(unlock == true){
-             
+            
         }
     }
 }
