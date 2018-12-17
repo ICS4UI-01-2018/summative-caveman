@@ -17,7 +17,6 @@ public class Shooter extends Enemy {
     Player player;
     Enemy enemy;
     private int attackSpeed = 5;
-    private boolean Attack;
 
     public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
@@ -53,25 +52,13 @@ public class Shooter extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-    
 
-    
     /**
      *
      */
     @Override
-    public void health(){
+    public void health() {
         this.health = 150;
     }
 
-    public void attack(int damage, int attackRange, Player player) {
-        if(enemy.attack == true){
-            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
-                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
-                    player.health = player.health - damage;
-                    enemy.attack = false;
-                } 
-            }
-        }
-    }
 }

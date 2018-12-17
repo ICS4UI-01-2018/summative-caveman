@@ -20,7 +20,7 @@ public class Caveman extends ApplicationAdapter {
     private ShapeRenderer shapeBatch;
     //private Texture img;
     private Player player;
-   // private ArrayList<Enemies> enemies;
+    // private ArrayList<Enemies> enemies;
     private ArrayList<Rectangle> walls;
     private OrthographicCamera cam;
     private FitViewport viewport;
@@ -42,25 +42,21 @@ public class Caveman extends ApplicationAdapter {
         cam.position.x = 400;
         cam.position.y = 300;
         cam.update();
-        
+
         player = new Player(390, 290, 20, 20, 5, 4);
-        
+
         walls.add(new Rectangle(25, 100, 25, 400));
         walls.add(new Rectangle(750, 100, 25, 400));
         walls.add(new Rectangle(25, 75, 750, 25));
         walls.add(new Rectangle(25, 500, 750, 25));
-        
 
     }
-    
-    
-    
 
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
+
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.moveUp();
         }
@@ -73,17 +69,17 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.moveDown();
         }
-        
+
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Line);
-        
+
         shapeBatch.setColor(Color.GRAY);
         for (int i = 0; i < walls.size(); i++) {
             shapeBatch.rect(walls.get(i).x, walls.get(i).y, walls.get(i).width, walls.get(i).height);
         }
 
         player.draw(shapeBatch);
-        
+
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();

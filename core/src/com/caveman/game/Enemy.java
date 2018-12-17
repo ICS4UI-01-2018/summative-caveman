@@ -27,7 +27,6 @@ public class Enemy {
     public boolean attack;
     public boolean tracking;
 
-
     /**
      *
      * @param x
@@ -96,6 +95,7 @@ public class Enemy {
                 }
             }
         } else if (dead == true) {
+
         }
     }
 
@@ -132,20 +132,13 @@ public class Enemy {
      * @param player
      */
     public void attack(int damage, int attackRange, Player player) {
-        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else {
-            attack = false;
+        if(attack == true){
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    player.health = player.health - damage;
+                    attack = false;
+                } 
+            }
         }
     }
 
@@ -157,22 +150,4 @@ public class Enemy {
         return attack == true;
     }
 
-    /**
-     *
-     * @param damage
-     */
-    public void attack(int damage) {
-
-    }
-
-   
-
-
-    public boolean attack(){
-        if(attack== true){
-            return true;
-        }else{
-            return false;
-    }
-    }
 }
