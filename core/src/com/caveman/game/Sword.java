@@ -28,24 +28,25 @@ public class Sword extends Items{
         return this.range;
     }
     
-    public void Attack(int damage){ 
+    public void Attack(){ 
         if(Attack == true){
             if(enemy.xPos <= player.x + range && enemy.xPos >= player.x - range){
                 if(enemy.yPos <= player.y + range && enemy.yPos <= player.y + range){
-                    enemy.health = enemy.health - damage;
+                    enemy.health = enemy.health - 100;
                     Attack = false;
                 }
             }
         }else{
-            // nothing
+            Attack = false; 
         }
     }
     
     public boolean Attacking(){
-        if(Attack == true){
-            return true;
-        }else{
-            return false;
+        if(enemy.attack == true){
+            return Attack = true;
+        }else if(enemy.attack == false){
+            return Attack = false;
         }
+        return false;
     }
 }

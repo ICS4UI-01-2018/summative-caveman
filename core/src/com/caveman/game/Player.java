@@ -39,12 +39,12 @@ public class Player {
 
     /**
      * 
-     * @param x get x position of player
-     * @param y get y position of player
+     * @param x x position of the player
+     * @param y y position of the player
      * @param width width of the player
      * @param height height of the player
      * @param health health of the player
-     * @param speed speed of player
+     * @param speed the speed of the player
      */
     
     public Player(float x, float y, int width, int height, int health, int speed){
@@ -79,7 +79,6 @@ public class Player {
      * number of items are not over 5 
      * if the number of items the player has is 5,
      * the player cannot pick up the item.
-     * 
      */
     public void pickUpItems(){
         
@@ -170,7 +169,6 @@ public class Player {
     }
 
     /**
-     * 
      * initially, 1000 hp of health is given to the player when the game is just started.
      * health decreases by damages the player got. 
      * its health cannot be over 1000 nor be less than 0
