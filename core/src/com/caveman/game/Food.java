@@ -20,19 +20,13 @@ public class Food extends Items {
     public Food(int effect, String name){
         super(effect, name);
     }
-        
-    public void Heal(){
-        if(eaten == false){
-            player.health = player.health + 100;
-            eaten = true;
-        }
-    }
     
     public boolean eat(){
         if(eaten == true){
-            return true;
-        }else{
-            return false;
+            // nothing happen
+        }else if(eaten == false){
+            player.health = player.health + 100;
         }
+        return eaten = true;
     }
 }

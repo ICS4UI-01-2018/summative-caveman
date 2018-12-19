@@ -59,6 +59,7 @@ public class Slasher extends Enemy {
         this.health = 300;
     }
 
+    @Override
     public void attack(int damage, int attackRange, Player player) {
         if(enemy.attack == true){
             if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {

@@ -94,8 +94,10 @@ public class Player {
                 numItems++;
                 pickUp = false;
             }
-        }else if(numItems >= 5){
-            pickUp = false;
+        }else if(numItems >= 5 || numItems <= 0){
+            if(pickUp == true){
+                pickUp = false;
+            }
         }
     }
     
@@ -110,7 +112,7 @@ public class Player {
         if(numItems > 0){
             if(useItems == true){
                 if(items == food && numFood > 0){
-                    food.Heal();
+                    food.eat();
                     numFood--;
                 }else if(items == key && numKey > 0){
 
@@ -170,7 +172,7 @@ public class Player {
 
     /**
      * initially, 1000 hp of health is given to the player when the game is just started.
-     * health decreases by damages the player got. 
+     * health decreases by the amount of damages the player got. 
      * its health cannot be over 1000 nor be less than 0
      * if its health is negative, it shows as a 0 and the player dies 
      */
