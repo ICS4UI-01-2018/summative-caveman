@@ -18,8 +18,8 @@ public class Sword extends Items{
     Player player;
     private boolean Attack;
     
-    public Sword(int effect, int range, String name){
-        super(effect, name);
+    public Sword(int range, String name){
+        super(name);
         
         this.range = range;
     }

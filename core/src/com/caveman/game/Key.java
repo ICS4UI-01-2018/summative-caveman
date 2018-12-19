@@ -13,8 +13,8 @@ public class Key extends Items{
     Player player;
     private boolean unlock;
     
-    public Key(int effect, String name ){
-        super(effect, name);
+    public Key(String name){
+        super(name);
     }
     
     public void Open(){

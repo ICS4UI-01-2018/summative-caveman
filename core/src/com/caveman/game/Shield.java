@@ -18,8 +18,8 @@ public class Shield extends Items {
     private int range;
     Enemy enemy;
     
-    public Shield(int effect, String name, int range){
-        super(effect,name);
+    public Shield(String name, int range){
+        super(name);
         this.range = range;
         
         if(enemy.attack == true){
@@ -30,6 +30,7 @@ public class Shield extends Items {
     public int getRange(){
         return this.range;
     }
+    
     
     public void Shield(){
         if(enemy.xPos <= player.x + enemy.attackRange && enemy.xPos >= player.x - enemy.attackRange){

@@ -20,8 +20,8 @@ public class Food extends Items {
    
         
 
-    public Food(int effect, String name){
-        super(effect, name);
+    public Food(String name){
+        super(name);
     }
         
     public void Heal(){

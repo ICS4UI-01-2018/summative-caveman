@@ -13,19 +13,15 @@ package com.caveman.game;
  * @author macdn5071
  */
 public abstract class Items {
-    private int effect;
     private String name;
     
     
-    public Items(int effect, String name){
-        this.effect = 15;
+    public Items(String name){
         
         this.name = name;
     }
     
-    public int getEffect(){
-        return this.effect;
-    }
+    
     
    
     public String getName(){
