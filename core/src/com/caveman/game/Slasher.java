@@ -59,14 +59,4 @@ public class Slasher extends Enemy {
         this.health = 300;
     }
 
-    public void attack(int damage, int attackRange, Player player) {
-        if(enemy.attack == true){
-            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
-                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
-                    player.health = player.health - damage;
-                    enemy.attack = false;
-                } 
-            }
-        }
-    }
 }
