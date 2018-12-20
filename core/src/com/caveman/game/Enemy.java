@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import com.sun.javafx.scene.traversal.Direction;
+
 /**
  *
  * @author choij2116
@@ -24,8 +26,20 @@ public class Enemy {
     public boolean collide;
     public boolean dead;
     Player player;
+    public boolean attack;
+    public boolean tracking;
+    public Direction direction;
 
-    public Enemy(int x, int y, int health, int damage, int speed, int attackRange) {
+    /**
+     *
+     * @param x controls x position
+     * @param y controls y position
+     * @param health tracks current enemy health
+     * @param damage is how much the enemy takes away health
+     * @param speed is how fast the enemy moves
+     * @param attackRange is how far the enemy can attack
+     */
+    public Enemy(float x, float y, int health, int damage, int speed, int attackRange) {
         this.xPos = x;
         this.yPos = y;
         this.health = health;
@@ -34,11 +48,19 @@ public class Enemy {
         this.attackRange = attackRange;
     }
 
-    public int getEnemyX() {
+    /**
+     *
+     * @return enemy X position
+     */
+    public float getEnemyX() {
         return this.xPos;
     }
 
-    public int getEnemyY() {
+    /**
+     *
+     * @return enemy Y position
+     */
+    public float getEnemyY() {
         return this.yPos;
     }
 
@@ -50,50 +72,93 @@ public class Enemy {
         
     }
 
+    /**
+     *
+     * @param player tracks the player's movement
+     */
     public void trackPlayer(Player player) {
-        int playX = player.getPlayerX();
-        int playY = player.getPlayerY();
+        float playX = player.getPlayerX();
+        float playY = player.getPlayerY();
+        // if the enemy is not dead, follow the player up to their range times 3
         if (dead == false) {
             if (player.getPlayerX() <= attackRange * 4) {
                 if (this.xPos > playX) {
+                    // they follow using their x or y position modified by their speed stat
+                    // their direction updates too so they can attack accurately
                     this.xPos = xPos - speed;
+                    direction = Direction.LEFT;
                 } else if (this.xPos < playX) {
                     this.xPos = xPos + speed;
+                    direction = Direction.RIGHT;
                 } else {
                     this.xPos = xPos;
+                    direction = direction;
                 }
                 if (this.yPos > playY) {
                     this.yPos = yPos - speed;
+                    direction = Direction.DOWN;
                 } else if (this.yPos < playY) {
                     this.yPos = yPos + speed;
+                    direction = Direction.UP;
                 } else {
                     this.yPos = yPos;
+                    direction = direction;
                 }
             }
         } else if (dead == true) {
+
         }
     }
 
+    /**
+     *
+     * @return where the player is if in range
+     */
+    public boolean track() {
+        return tracking == true;
+    }
+
+    /**
+     * tells the game if the enemy is dead
+     */
     public void dying() {
         if (health <= 0) {
             dead = true;
         }
     }
 
+    /**
+     *
+     * @return if the enemy has died
+     */
     public boolean hasDied() {
-        if (dead == true) {
-            return true;
-        } else {
-            return false;
+        return dead == true;
+    }
+
+    /**
+     *
+     * @param damage is how much the enemy takes away health
+     * @param attackRange is how far the enemy can attack
+     * @param player tracks the player's actions
+     */
+    public void attack(int damage, int attackRange, Player player) {
+        // if they are in range to attack, deal damage on a timer
+        if (attack == true) {
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    player.health = player.health - damage;
+                    attack = false;
+                }
+            }
         }
     }
 
     /**
      *
-     * @param damage
+     * @return if the enemy is attacking or not
      */
-    public void attack(int damage) {
-
+    public boolean attacking() {
+        return attack == true;
     }
 
 }

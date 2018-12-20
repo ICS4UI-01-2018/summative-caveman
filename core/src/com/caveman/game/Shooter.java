@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author macdn5071
@@ -12,11 +14,15 @@ package com.caveman.game;
 public class Shooter extends Enemy {
 
     Player player;
-    private int attackSpeed = 5;
+    Enemy enemy;
+    private int attackSpeed;
+    private ArrayList<Bullet> firedShots = new ArrayList<Bullet>();
+    
 
     public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
-        this.attackSpeed = attackSpeed;
+        this.attackSpeed = 5;
+        this.damage = 100;
         this.attackRange = 200;
         this.speed = 0;
     }
@@ -38,14 +44,27 @@ public class Shooter extends Enemy {
     public float getEnemyY() {
         return this.yPos;
     }
-
+  
     /**
      *
-     * @param player
+     * @param damage is how much the enemy takes away health
+     * @param attackRange is how far the enemy can attack
+     * @param player tracks the player's actions
      */
     @Override
-    public void trackPlayer(Player player) {
-        super.trackPlayer(player);
+    public void attack(int damage, int attackRange, Player player) {
+        // if they are in range to attack, deal damage on a timer
+        Bullet bullet = new Bullet(xPos, yPos);
+        if (attack == true) {
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    firedShots.add(bullet);
+                    bullet.shoot(enemy.direction);
+                    player.health = player.health - damage;
+                    attack = false;
+                }
+            }
+        }
     }
 
     /**
@@ -56,5 +75,4 @@ public class Shooter extends Enemy {
         this.health = 150;
     }
 
-    
 }

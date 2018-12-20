@@ -26,7 +26,17 @@ public class Shield extends Items {
         }
     }
     
-    public int getRange(){
-        return this.range;
+    /**
+     * if the player used a shield, and enemy attacked the player within the range,
+     * it negates their attacks. 
+     */
+    public void Shield(){
+        if(enemy.xPos <= player.x + enemy.attackRange && enemy.xPos >= player.x - enemy.attackRange){
+            if(enemy.yPos <= player.y + enemy.attackRange && enemy.yPos >= player.y - enemy.attackRange){
+                if(enemy.attack == true){
+                    enemy.attack = false;
+                }
+            }
+        }
     }
 }
