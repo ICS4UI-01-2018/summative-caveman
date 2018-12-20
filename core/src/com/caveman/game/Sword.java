@@ -24,10 +24,6 @@ public class Sword extends Items{
         this.range = 15;
     }
     
-    public int getRange(){
-        return this.range;
-    }
-    
     public void Attack(){ 
         if(Attack == true){
             if(enemy.xPos <= player.x + range && enemy.xPos >= player.x - range){
@@ -44,9 +40,8 @@ public class Sword extends Items{
     public boolean Attacking(){
         if(enemy.attack == true){
             return Attack = true;
-        }else if(enemy.attack == false){
+        }else{
             return Attack = false;
         }
-        return false;
     }
 }

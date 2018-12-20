@@ -12,11 +12,12 @@ package com.caveman.game;
  * @author tarra7926
  * @author macdn5071
  */
-public abstract class Items {
+public class Items {
 
     private int effect;
     private String name;
-    
+    private float x;
+    private float y;
     
     public Items(int effect, String name){
         this.effect = effect;
@@ -32,4 +33,14 @@ public abstract class Items {
         return this.name;
     }
 
+    public Items CreateNew(float x, float y){
+        Items i = new Items(effect, name);
+        i.setPosition(x, y);
+        return i;
+    }
+    
+    public void setPosition(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
 }
