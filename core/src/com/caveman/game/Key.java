@@ -7,16 +7,19 @@ package com.caveman.game;
 
 /**
  *
- * @author choij2116
  * @author modia9548
- * @author tarra7926
- * @author macdn5071
  */
-public class Food extends Items {
+public class Key extends Items{
+    Player player;
+    private boolean unlock;
     
-    
-    public food(int effect, String name){
-        
+    public Key(int effect, String name ){
+        super(effect, name);
     }
     
+    public void Open(){
+        if(unlock == true){
+             
+        }
+    }
 }
