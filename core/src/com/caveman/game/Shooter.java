@@ -21,7 +21,7 @@ public class Shooter extends Enemy {
 
     public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
-        this.attackSpeed = attackSpeed;
+        this.attackSpeed = 5;
         this.damage = 100;
         this.attackRange = 200;
         this.speed = 0;
@@ -55,12 +55,11 @@ public class Shooter extends Enemy {
     }
     
 
-    
     /**
      *
      */
     @Override
-    public void health(){
+    public void health() {
         this.health = 150;
     }
 

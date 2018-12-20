@@ -17,6 +17,7 @@ public class Key extends Items{
         super(name);
     }
     
+    //if key is equipped, door is now unlocked
     public void Open(){
         if(unlock == true){
             // door is locked or unlocked is next 

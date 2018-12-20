@@ -76,8 +76,8 @@ public class Enemy {
      * @param player
      */
     public void trackPlayer(Player player) {
-        int playX = player.getPlayerX();
-        int playY = player.getPlayerY();
+        float playX = player.getPlayerX();
+        float playY = player.getPlayerY();
         if (dead == false) {
             if (player.getPlayerX() <= attackRange * 3) {
                 if (this.xPos > playX) {
@@ -96,6 +96,7 @@ public class Enemy {
                 }
             }
         } else if (dead == true) {
+
         }
     }
 
@@ -125,29 +126,7 @@ public class Enemy {
         return dead == true;
     }
 
-    /**
-     *
-     * @param damage
-     * @param attackRange
-     * @param player
-     */
-    public void attack(int damage, int attackRange, Player player) {
-        if (player.getPlayerX() <= this.getEnemyX() + attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerY() <= this.getEnemyY() + attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerX() >= this.getEnemyX() - attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else if (player.getPlayerY() >= this.getEnemyY() - attackRange) {
-            player.health = player.health - damage;
-            attack = true;
-        } else {
-            attack = false;
-        }
-    }
+
 
     /**
      *
@@ -160,19 +139,22 @@ public class Enemy {
     /**
      *
      * @param damage
+     * @param attackRange
+     * @param player
      */
-    public void attack(int damage) {
-
+    public void attack(int damage, int attackRange, Player player) {
+        if(attack == true){
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    player.health = player.health - damage;
+                    attack = false;
+                } 
+            }
+        }
     }
 
    
 
 
-    public boolean attack(){
-        if(attack== true){
-            return true;
-        }else{
-            return false;
-    }
-    }
+   
 }

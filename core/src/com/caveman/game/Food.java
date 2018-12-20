@@ -17,25 +17,17 @@ public class Food extends Items {
     Player player;
     private boolean eaten; 
     
-   
-        
-
-    public Food(String name){
-        super(name);
-    }
-        
-    public void Heal(){
-        if(eaten == true){
-            player.health = player.health + 100;
-            eaten = false;
-        }
+    public Food(int effect, String name){
+        super( name);
     }
     
+    //if food is eaten, gain 100 health
     public boolean eat(){
         if(eaten == true){
-            return true;
-        }else{
-            return false;
+            // nothing happen
+        }else if(eaten == false){
+            player.health = player.health + 100;
         }
+        return eaten = true;
     }
 }

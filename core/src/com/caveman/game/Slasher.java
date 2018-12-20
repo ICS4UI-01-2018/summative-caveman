@@ -23,6 +23,8 @@ public class Slasher extends Enemy {
     public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
         this.speed = 15;
+        this.attackRange = 10;
+        this.damage = 50;
     }
 
     /**
@@ -60,7 +62,7 @@ public class Slasher extends Enemy {
         this.health = 300;
     }
 
-
+    @Override
     public void attack(int damage, int attackRange, Player player) {
         if(enemy.attack == true){
             if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {

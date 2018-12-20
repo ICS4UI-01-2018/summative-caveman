@@ -52,9 +52,9 @@ public class FastShooter extends Shooter{
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-    
+
     @Override
-    public void health(){
+    public void health() {
         this.health = super.health;
     }
 }

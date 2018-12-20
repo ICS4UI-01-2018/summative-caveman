@@ -17,8 +17,8 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
     
-    public int x;
-    public int y;
+    public float x;
+    public float y;
     private Rectangle player;
     private int speed;
     public int health;
@@ -37,23 +37,49 @@ public class Player {
     private int numKey = 0;
     private int numShield = 0;
 
+    /**
+     * 
+     * @param x x position of the player
+     * @param y y position of the player
+     * @param width width of the player
+     * @param height height of the player
+     * @param health health of the player
+     * @param speed the speed of the player
+     */
     
-    public Player(int x, int y, int width, int height, int health, int speed){
+    public Player(float x, float y, int width, int height, int health, int speed){
         this.x = x;
         this.y = y; 
         this.speed = 5;
         player = new Rectangle(x,y,width,height);
-        this.health = 500;
+        this.health = 1000;
     }
     
-    public int getPlayerX(){
+    /**
+     * 
+     * @return the x position of the player
+     */
+    public float getPlayerX(){
         return this.x;
     }
     
-    public int getPlayerY(){
+    /**
+     * 
+     * @return the y position of the player
+     */
+    public float getPlayerY(){
         return this.y;
     }
     
+    /**
+     * method to pick up items 
+     * if they picked up the items, the number of items the player picked up is increased by 1
+     * and total number of items the player has is also increased by 1
+     * then the pickup is false to not pick up the same one again
+     * number of items are not over 5 
+     * if the number of items the player has is 5,
+     * the player cannot pick up the item.
+     */
     public void pickUpItems(){
         
         if(numItems < 5){
@@ -68,63 +94,100 @@ public class Player {
                 numItems++;
                 pickUp = false;
             }
-        }else if(numItems >= 5){
-            pickUp = false;
+        }else if(numItems >= 5 || numItems <= 0){
+            if(pickUp == true){
+                pickUp = false;
+            }
         }
     }
     
+    /**
+     * method to use items
+     * when the total number of items are bigger than 0 and use item button clicked,
+     * item is used with some effects to the players by each different item
+     * and the number of them is decreases.
+     * if the player does not have any items, the player cannot use any items.
+     */
     public void usingItems(){
-        if(useItems == true){
-            if(items == food){
-                food.Heal();
-                numFood--;
-            }else if(items == key){
-                
-            }else if(items == shield){
-                shield.Shield();
-                numShield--;
+        if(numItems > 0){
+            if(useItems == true){
+                if(items == food && numFood > 0){
+                    food.eat();
+                    numFood--;
+                }else if(items == key && numKey > 0){
+
+                }else if(items == shield && numShield > 0){
+                    shield.Shield();
+                    numShield--;
+                }
+                useItems = false;
             }
+        }else if(numItems <= 0){
             useItems = false;
         }
-        
     }
     
-    public void moveUp(){
+    /**
+    * move up the player's position by changing its y position
+    */
+    public void moveUp() {
         player.y = player.y + speed;
     }
-    
-    public void moveDown(){
+
+    /**
+    * move down the player's position by changing its y position
+    */
+    public void moveDown() {
         player.y = player.y - speed;
     }
-    
-    public void moveLeft(){
+
+    /**
+    * move left the player's position by changing its x position
+    */
+    public void moveLeft() {
         player.x = player.x - speed;
     }
-    
-    public void moveRight(){
+
+    /**
+    * move right the player's position by changing its x position
+    */
+    public void moveRight() {
         player.x = player.x + speed;
     }
-    
-    public boolean alive(){
-        if(health <= 0){
-            return alive = false;
-        }
-        return true;
 
+    /**
+     * method to check the player is alive or not
+     * if its health is or under 0, 
+     * @return false and the player is dead.
+     * if its health is over 0,
+     * @return true and the player is alive. 
+     */
+    public boolean alive() {
+        if (health <= 0) {
+            return alive = false;
+        }else{
+        return alive = true;
+        }
     }
-    
-    public void health(){
-        int iniHealth = 500;
+
+    /**
+     * initially, 1000 hp of health is given to the player when the game is just started.
+     * health decreases by the amount of damages the player got. 
+     * its health cannot be over 1000 nor be less than 0
+     * if its health is negative, it shows as a 0 and the player dies 
+     */
+    public void health() {
+        int iniHealth = 1000;
         health -= damage;
-        
-        if(health>=500){
-            health = 500;
-        }else if(health<=0){
+
+        if (health >= 1000) {
+            health = 1000;
+        } else if (health <= 0) {
             health = 0;
         }
     }
-    
-    public void draw(ShapeRenderer shapeBatch){
+
+    public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(player.x, player.y, player.width, player.height);
     }
 
