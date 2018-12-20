@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import com.sun.javafx.scene.traversal.Direction;
+
 /**
  *
  * @author choij2116
@@ -26,6 +28,7 @@ public class Enemy {
     Player player;
     public boolean attack;
     public boolean tracking;
+    public Direction direction;
 
     /**
      *
@@ -80,18 +83,25 @@ public class Enemy {
             if (player.getPlayerX() <= attackRange * 3) {
                 if (this.xPos > playX) {
                     // they follow using their x or y position modified by their speed stat
+                    // their direction updates too so they can attack accurately
                     this.xPos = xPos - speed;
+                    direction = Direction.LEFT;
                 } else if (this.xPos < playX) {
                     this.xPos = xPos + speed;
+                    direction = Direction.RIGHT;
                 } else {
                     this.xPos = xPos;
+                    direction = direction;
                 }
                 if (this.yPos > playY) {
                     this.yPos = yPos - speed;
+                    direction = Direction.DOWN;
                 } else if (this.yPos < playY) {
                     this.yPos = yPos + speed;
+                    direction = Direction.UP;
                 } else {
                     this.yPos = yPos;
+                    direction = direction;
                 }
             }
         } else if (dead == true) {

@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author choij2116
@@ -17,6 +19,7 @@ public class FastShooter extends Shooter {
     Player player;
 
     private int attackSpeed = 15;
+    private ArrayList<Bullet> firedShots = new ArrayList<Bullet>();
 
     public FastShooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
@@ -42,15 +45,6 @@ public class FastShooter extends Shooter {
     @Override
     public float getEnemyY() {
         return this.yPos;
-    }
-
-    /**
-     *
-     * @param player
-     */
-    @Override
-    public void trackPlayer(Player player) {
-        super.trackPlayer(player);
     }
 
     @Override
