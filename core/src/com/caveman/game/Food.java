@@ -14,6 +14,8 @@ package com.caveman.game;
  */
 public class Food extends Items {
     
+    Player player;
+    private boolean eaten; 
     
     public Food(int effect, String name){
         super(effect, name);

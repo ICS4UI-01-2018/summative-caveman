@@ -14,6 +14,7 @@ package com.caveman.game;
  */
 public class Shield extends Items {
     
+    Player player;
     private int range;
     Enemy enemy;
     

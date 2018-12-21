@@ -8,12 +8,19 @@ package com.caveman.game;
 /**
  *
  * @author choij2116
+ * @author modia9548
+ * @author tarra7926
+ * @author macdn5071
  */
-public class Sword extends Player{
+public class Sword extends Items{
+    private int range;
+    Enemy enemy;
+    Player player; 
+    private boolean Attack;
     
+    public Sword(int effect, int range, String name){
+        super(effect, name);
     
-    public Sword(){
-        
         this.range = 15;
     }
     

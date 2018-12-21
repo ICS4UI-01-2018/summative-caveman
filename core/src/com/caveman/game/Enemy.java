@@ -5,7 +5,7 @@
  */
 package com.caveman.game;
 
-import com.sun.javafx.scene.traversal.Direction;
+import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
 
 /**
  *
@@ -16,8 +16,8 @@ import com.sun.javafx.scene.traversal.Direction;
  */
 public class Enemy {
 
-    int xPos;
-    int yPos;
+    float xPos;
+    float yPos;
 
     public int health;
     public int damage;
