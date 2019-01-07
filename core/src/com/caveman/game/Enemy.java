@@ -101,7 +101,7 @@ public class Enemy {
                     direction = Direction.UP;
                 } else {
                     this.yPos = yPos;
-                    direction = direction;
+                    direction = direction; 
                 }
             }
         } else if (dead == true) {
