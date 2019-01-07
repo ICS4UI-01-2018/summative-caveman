@@ -17,7 +17,7 @@ import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
  */
 public class Bullet {
     private Direction direction;
-    private float speed = 1.2f;
+    private float speed = 5;
     private float x;
     private float y;
     
