@@ -9,9 +9,6 @@ import java.util.ArrayList;
 
 /**
  *
- * @author choij2116
- * @author modia9548
- * @author tarra7926
  * @author macdn5071
  */
 public class FastShooter extends Shooter {
@@ -25,7 +22,6 @@ public class FastShooter extends Shooter {
         super(x, y, health, damage, speed, attackRange);
         this.attackSpeed = attackSpeed;
         this.attackRange = super.attackRange;
-        this.damage = 215;
         this.speed = 5;
     }
 
@@ -51,4 +47,6 @@ public class FastShooter extends Shooter {
     public void health() {
         this.health = super.health;
     }
+
+    
 }

@@ -5,7 +5,7 @@
  */
 package com.caveman.game;
 
-import com.sun.javafx.scene.traversal.Direction;
+import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
 
 /**
  *
@@ -64,11 +64,12 @@ public class Enemy {
         return this.yPos;
     }
 
-    /**
-     *
-     */
-    public void health() {
+    public void move() {
 
+    }
+    
+    public void health(){
+        
     }
 
     /**
@@ -80,7 +81,7 @@ public class Enemy {
         float playY = player.getPlayerY();
         // if the enemy is not dead, follow the player up to their range times 3
         if (dead == false) {
-            if (player.getPlayerX() <= attackRange * 3) {
+            if (player.getPlayerX() <= attackRange * 4) {
                 if (this.xPos > playX) {
                     // they follow using their x or y position modified by their speed stat
                     // their direction updates too so they can attack accurately
