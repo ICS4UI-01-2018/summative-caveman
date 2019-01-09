@@ -115,9 +115,9 @@ public class Player {
                     food.eat();
                     numFood--;
                 }else if(items == key && numKey > 0){
-
+                    // key
                 }else if(items == shield && numShield > 0){
-                    //shield.Shield();
+                    shield.Shielded();
                     numShield--;
                 }
                 useItems = false;
