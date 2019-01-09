@@ -5,15 +5,19 @@
  */
 package com.caveman.game;
 
-import com.sun.javafx.scene.traversal.Direction;
+import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
+
 
 /**
  *
+ * @author choij2116
+ * @author modia9548
+ * @author tarra7926
  * @author macdn5071
  */
 public class Bullet {
     private Direction direction;
-    private float speed = 1.2f;
+    private float speed = 5;
     private float x;
     private float y;
     

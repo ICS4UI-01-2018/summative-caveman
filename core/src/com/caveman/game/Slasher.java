@@ -49,7 +49,7 @@ public class Slasher extends Enemy {
     public void trackPlayer(Player player) {
         super.trackPlayer(player);
     }
-
+    
     /**
      *
      */

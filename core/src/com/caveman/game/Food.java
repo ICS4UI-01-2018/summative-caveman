@@ -23,10 +23,13 @@ public class Food extends Items {
     
     public boolean eat(){
         if(eaten == true){
-            // nothing happen
+            // nothing happens
         }else if(eaten == false){
             player.health = player.health + 100;
         }
         return eaten = true;
+        
+        
+               
     }
 }
