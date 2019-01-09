@@ -13,14 +13,12 @@ public class Key extends Items{
     Player player;
     private boolean unlock;
     
-    public Key(String name){
-        super(name);
+    public Key(int effect, String name){
+        super(effect, name);
     }
     
-    //if key is equipped, door is now unlocked
     public void Open(){
         if(unlock == true){
-            // door is locked or unlocked is next 
             
         }
     }

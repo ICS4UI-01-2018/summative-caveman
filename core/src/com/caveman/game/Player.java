@@ -60,7 +60,7 @@ public class Player {
      * @return the x position of the player
      */
     public float getPlayerX(){
-        return this.x;
+        return player.x;
     }
     
     /**
@@ -68,7 +68,7 @@ public class Player {
      * @return the y position of the player
      */
     public float getPlayerY(){
-        return this.y;
+        return player.y;
     }
     
     /**
@@ -117,7 +117,7 @@ public class Player {
                 }else if(items == key && numKey > 0){
 
                 }else if(items == shield && numShield > 0){
-                    shield.Shield();
+                    //shield.Shield();
                     numShield--;
                 }
                 useItems = false;

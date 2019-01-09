@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author choij2116
@@ -16,8 +18,9 @@ public class Shooter extends Enemy {
 
     Player player;
     Enemy enemy;
-    private int attackSpeed = 5;
-    private boolean Attack;
+    private int attackSpeed;
+    private ArrayList<Bullet> firedShots = new ArrayList<Bullet>();
+    
 
     public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
         super(x, y, health, damage, speed, attackRange);
@@ -44,16 +47,28 @@ public class Shooter extends Enemy {
     public float getEnemyY() {
         return this.yPos;
     }
-
+  
     /**
      *
-     * @param player
+     * @param damage is how much the enemy takes away health
+     * @param attackRange is how far the enemy can attack
+     * @param player tracks the player's actions
      */
     @Override
-    public void trackPlayer(Player player) {
-        super.trackPlayer(player);
+    public void attack(int damage, int attackRange, Player player) {
+        // if they are in range to attack, deal damage on a timer
+        Bullet bullet = new Bullet(xPos, yPos);
+        if (attack == true) {
+            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
+                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    firedShots.add(bullet);
+                    bullet.shoot(enemy.direction);
+                    player.health = player.health - damage;
+                    attack = false;
+                }
+            }
+        }
     }
-    
 
     /**
      *
@@ -63,14 +78,4 @@ public class Shooter extends Enemy {
         this.health = 150;
     }
 
-    public void attack(int damage, int attackRange, Player player) {
-        if(enemy.attack == true){
-            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
-                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
-                    player.health = player.health - damage;
-                    enemy.attack = false;
-                } 
-            }
-        }
-    }
 }

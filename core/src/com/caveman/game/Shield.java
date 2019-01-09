@@ -18,19 +18,14 @@ public class Shield extends Items {
     private int range;
     Enemy enemy;
     
-    public Shield(String name, int range){
-        super(name);
+    public Shield(int effect, String name, int range){
+        super(effect,name);
         this.range = range;
         
         if(enemy.attack == true){
             enemy.attack = false;
         }
     }
-    
-    public int getRange(){
-        return this.range;
-    }
-    
     
     /**
      * if the player used a shield, and enemy attacked the player within the range,

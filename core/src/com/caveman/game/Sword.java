@@ -18,18 +18,13 @@ public class Sword extends Items{
     Player player;
     private boolean Attack;
     
-    public Sword(int range, String name){
-        super(name);
-        
+    public Sword(int effect, int range, String name){
+        super(effect, name);
+    
         this.range = 15;
     }
     
-    public int getRange(){
-        return this.range;
-
-    }
-    
-    public void Attack(int damage){ 
+    public void Attack(){ 
         if(Attack == true){
             if(enemy.xPos <= player.x + range && enemy.xPos >= player.x - range){
                 if(enemy.yPos <= player.y + range && enemy.yPos <= player.y + range){

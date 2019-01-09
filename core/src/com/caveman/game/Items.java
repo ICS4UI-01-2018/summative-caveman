@@ -19,23 +19,22 @@ public class Items {
     private float x;
     private float y;
     
-    //name of each item
-    public Items(String name){
+    public Items(int effect, String name){
+        this.effect = effect;
         
         this.name = name;
     }
-    
-    
-    
-   
-    public String getName(){
+
+    public int getEffect() {
+        return this.effect;
+    }
+
+    public String getName() {
         return this.name;
     }
-    
-    //create x and y positions for the items
 
     public Items CreateNew(float x, float y){
-        Items i = new Items(name);
+        Items i = new Items(effect, name);
         i.setPosition(x, y);
         return i;
     }

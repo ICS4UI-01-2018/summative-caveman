@@ -18,10 +18,9 @@ public class Food extends Items {
     private boolean eaten; 
     
     public Food(int effect, String name){
-        super( name);
+        super(effect, name);
     }
     
-    //if food is eaten, gain 100 health
     public boolean eat(){
         if(eaten == true){
             // nothing happen
