@@ -53,7 +53,8 @@ public class Caveman extends ApplicationAdapter {
         healthBar = new Rectangle(100, 25, 600, 25);
         walls.add(new Door(350, 500, 100, 25, 1));
         player = new Player(390, 290, 20, 20, 5, 4);
-        //enemies.add(new Rectangle(300, 150, 3, 3, 4));
+        //enemies
+        //enemies.add(new Enemy(300, 150, Enemy.health, Enemy.damage, Enemy.speed, Enemy.attackRange, Enemy.width, Enemy.height));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -154,6 +155,7 @@ public class Caveman extends ApplicationAdapter {
         }
         shapeBatch.setColor(Color.GREEN);
         shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
+        enemies.get(1).draw(shapeBatch);
         
         
         shapeBatch.end();

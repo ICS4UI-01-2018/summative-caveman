@@ -21,9 +21,20 @@ public class Shooter extends Enemy {
     private int attackSpeed;
     private ArrayList<Bullet> firedShots = new ArrayList<Bullet>();
     
-
-    public Shooter(float x, float y, int health, int damage, int speed, int attackRange) {
-        super(x, y, health, damage, speed, attackRange);
+    /**
+     *
+     * refer to enemy class for javadoc
+     * @param x
+     * @param y
+     * @param health
+     * @param damage
+     * @param speed
+     * @param attackRange
+     * @param width
+     * @param height
+     */
+    public Shooter(float x, float y, int health, int damage, int speed, int attackRange, int width, int height) {
+        super(x, y, health, damage, speed, attackRange, width, height);
         this.attackSpeed = 5;
         this.damage = 100;
         this.attackRange = 200;

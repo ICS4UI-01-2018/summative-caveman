@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.sun.javafx.scene.traversal.Direction;
 
 
@@ -20,7 +22,7 @@ public class Enemy {
 
     float xPos;
     float yPos;
-
+    private Rectangle enemy;
     public int health;
     public int damage;
     public int speed;
@@ -40,14 +42,17 @@ public class Enemy {
      * @param damage is how much the enemy takes away health
      * @param speed is how fast the enemy moves
      * @param attackRange is how far the enemy can attack
+     * @param width how wide the enemy is
+     * @param height how tall the enemy is
      */
-    public Enemy(float x, float y, int health, int damage, int speed, int attackRange) {
+    public Enemy(float x, float y, int health, int damage, int speed, int attackRange, int width, int height) {
         this.xPos = x;
         this.yPos = y;
         this.health = health;
         this.damage = damage;
         this.speed = speed;
         this.attackRange = attackRange;
+        enemy = new Rectangle(xPos, yPos, width, height);
     }
 
     /**
@@ -120,6 +125,14 @@ public class Enemy {
         return tracking == true;
     }
 
+    /**
+     *
+     * @param shapeBatch
+     */
+    public void draw(ShapeRenderer shapeBatch) {
+        shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
+    }
+    
     /**
      * tells the game if the enemy is dead
      */
