@@ -51,7 +51,7 @@ public class Caveman extends ApplicationAdapter {
         rightAllowed = true;
         leftAllowed = true;
         healthBar = new Rectangle(100, 25, 600, 25);
-        walls.add(new Door(350, 500, 100, 25, 1));
+        walls.add(new Door(325, 550, 150, 25, 1));
         player = new Player(390, 290, 20, 20, 5, 4);
         //enemies.add(new Rectangle(300, 150, 3, 3, 4));
         //first room
@@ -72,10 +72,55 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Wall(-125, 1075, 25, 250, 0));
         walls.add(new Wall(900, 725, 25, 250, 0));
         walls.add(new Wall(900, 1075, 25, 250, 0));
-        //railings
-        walls.add(new Wall(325, 725, 25, 250, 1));
-        walls.add(new Wall(450, 725, 25, 250, 1));
-        walls.add(new Wall(-125, 1075, 25, 250, 0));
+        //second hallway
+        walls.add(new Wall(925, 950, 200, 25, 0));
+        walls.add(new Wall(925, 1075, 200, 25, 0));
+        //third room
+        walls.add(new Wall(1125, 825, 25, 150, 0));
+        walls.add(new Wall(1125, 1075, 25, 150, 0));
+        walls.add(new Wall(1850, 825, 25, 400, 0));
+        walls.add(new Wall(1125, 800, 325, 25, 0));
+        walls.add(new Wall(1550, 800, 325, 25, 0));
+        walls.add(new Wall(1125, 1225, 325, 25, 0));
+        walls.add(new Wall(1550, 1225, 325, 25, 0));
+        //third hallway
+        walls.add(new Wall(1425, 600, 25, 200, 0));
+        walls.add(new Wall(1550, 600, 25, 200, 0));
+        //fourth hallway
+        walls.add(new Wall(1425, 1250, 25, 200, 0));
+        walls.add(new Wall(1550, 1250, 25, 200, 0));
+        //fourth room
+        walls.add(new Wall(1425, 200, 25, 400, 0));
+        walls.add(new Wall(1425, 175, 750, 25, 0));
+        walls.add(new Wall(1575, 600, 600, 25, 0));
+        walls.add(new Wall(2150, 200, 25, 150, 0));
+        walls.add(new Wall(2150, 450, 25, 150, 0));
+        //fifth hallway
+        walls.add(new Wall(2175, 325, 200, 25, 0));
+        walls.add(new Wall(2175, 450, 200, 25, 0));
+        //fifth room
+        walls.add(new Wall(2375, 325, 400, 25, 0));
+        walls.add(new Wall(2350, 475, 25, 600, 0));
+        walls.add(new Wall(2775, 325, 25, 750, 0));
+        walls.add(new Wall(2375, 1050, 150, 25, 0));
+        walls.add(new Wall(2625, 1050, 150, 25, 0));
+        //sixth room
+        walls.add(new Wall(1425, 1450, 25, 400, 0));
+        walls.add(new Wall(1425, 1850, 750, 25, 0));
+        walls.add(new Wall(1575, 1425, 600, 25, 0));
+        walls.add(new Wall(2150, 1450, 25, 150, 0));
+        walls.add(new Wall(2150, 1700, 25, 150, 0));
+        //sixth hallway
+        walls.add(new Wall(2500, 1075, 25, 150, 0));
+        walls.add(new Wall(2625, 1075, 25, 150, 0));
+        //seventh room
+        walls.add(new Wall(2375, 1200, 25, 350, 0));
+        walls.add(new Wall(2750, 1200, 25, 350, 0));
+        walls.add(new Wall(2400, 1525, 100, 25, 0));
+        walls.add(new Wall(2650, 1525, 100, 25, 0));
+        walls.add(new Wall(2400, 1200, 100, 25, 0));
+        walls.add(new Wall(2650, 1200, 100, 25, 0));
+        
         timer = 0;
 
     }
@@ -109,7 +154,7 @@ public class Caveman extends ApplicationAdapter {
             }
             if (player.collidesWith(walls.get(i).getBounds()) && walls.get(i) instanceof Door) {
                 Door d = (Door)walls.get(i);
-                //d.unlock();
+                d.unlock();
             }
         }
 
