@@ -31,7 +31,7 @@ public class Shooter extends Enemy {
     }
 
     /**
-     *
+     * x position
      * @return
      */
     @Override
@@ -40,7 +40,7 @@ public class Shooter extends Enemy {
     }
 
     /**
-     *
+     * y position
      * @return
      */
     @Override
@@ -71,7 +71,7 @@ public class Shooter extends Enemy {
     }
 
     /**
-     *
+     *initiate amount of health
      */
     @Override
     public void health() {

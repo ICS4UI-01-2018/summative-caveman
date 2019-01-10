@@ -87,7 +87,7 @@ public class Player {
                 if(items == food){
                     numFood++;
                 }else if(items == key){
-                    numKey++;
+                    Door.unlock();
                 }else if(items == shield){
                     numShield++;
                 }

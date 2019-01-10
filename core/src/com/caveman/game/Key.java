@@ -13,16 +13,11 @@ package com.caveman.game;
  * @author macdn5071
  */
 public class Key extends Items{
-    Player player;
-    private boolean unlock;
+   
     
     public Key(int effect, String name){
         super(effect, name);
     }
     
-    public void Open(){
-        if(unlock == true){
-            
-        }
-    }
+   
 }

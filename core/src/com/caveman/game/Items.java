@@ -32,6 +32,11 @@ public class Items {
     public String getName() {
         return this.name;
     }
+    
+    /**
+    *create x and y positions for items
+    *set positions for the items
+    */
 
     public Items CreateNew(float x, float y){
         Items i = new Items(effect, name);
