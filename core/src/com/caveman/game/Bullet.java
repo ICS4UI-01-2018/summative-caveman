@@ -9,24 +9,31 @@ import com.sun.javafx.scene.traversal.Direction;
 
 /**
  *
+ * @author choij2116
+ * @author modia9548
+ * @author tarra7926
  * @author macdn5071
  */
 public class Bullet {
+
     private Direction direction;
-    private float speed = 1.2f;
+    private float speed = 5;
     private float x;
     private float y;
-    
-    public Bullet(float x, float y){
+    Enemy enemy;
+
+    public Bullet(float x, float y) {
         this.x = x;
         this.y = y;
     }
-    
-    public void shoot(Direction direction){
+
+    public void shoot(Direction direction) {
         this.direction = direction;
     }
-    
-    public void moveInDirection(){
-        
+
+    public void moveInDirection() {
+        x += speed;
+        y += speed;
+
     }
 }

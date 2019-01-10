@@ -57,10 +57,10 @@ public class Shooter extends Enemy {
     @Override
     public void attack(int damage, int attackRange, Player player) {
         // if they are in range to attack, deal damage on a timer
-        Bullet bullet = new Bullet(xPos, yPos);
         if (attack == true) {
             if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
                 if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
+                    Bullet bullet = new Bullet(xPos, yPos);
                     firedShots.add(bullet);
                     bullet.shoot(enemy.direction);
                     player.health = player.health - damage;

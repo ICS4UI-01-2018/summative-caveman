@@ -18,7 +18,7 @@ public class Caveman extends ApplicationAdapter {
 
     private SpriteBatch batch;
     private ShapeRenderer shapeBatch;
-    //private Texture img;
+    // private Texture img;
     private Player player;
     // private ArrayList<Enemies> enemies;
     private ArrayList<Wall> walls;
