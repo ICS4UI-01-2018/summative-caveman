@@ -21,7 +21,6 @@ public class Wall {
         this.colourNum = colourNum;
     }
     
-    
     public Rectangle getBounds(){
         return Wall;
     }
