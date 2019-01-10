@@ -17,6 +17,7 @@ public class Shield extends Items {
     Player player;
     private int range;
     Enemy enemy;
+    private boolean Shielded;
     
     public Shield(int effect, String name, int range){
         super(effect,name);
@@ -39,5 +40,13 @@ public class Shield extends Items {
                 }
             }
         }
+    }
+    
+    public boolean Shielded(){
+        if(Shielded == true){
+            Shield();
+            return Shielded = false;
+        }
+        return Shielded = false;
     }
 }

@@ -5,8 +5,7 @@
  */
 package com.caveman.game;
 
-import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
-
+import com.sun.javafx.scene.traversal.Direction;
 
 /**
  *
@@ -16,21 +15,25 @@ import com.sun.xml.internal.ws.handler.HandlerProcessor.Direction;
  * @author macdn5071
  */
 public class Bullet {
+
     private Direction direction;
     private float speed = 5;
     private float x;
     private float y;
-    
-    public Bullet(float x, float y){
+    Enemy enemy;
+
+    public Bullet(float x, float y) {
         this.x = x;
         this.y = y;
     }
-    
-    public void shoot(Direction direction){
+
+    public void shoot(Direction direction) {
         this.direction = direction;
     }
-    
-    public void moveInDirection(){
-        
+
+    public void moveInDirection() {
+        x += speed;
+        y += speed;
+
     }
 }
