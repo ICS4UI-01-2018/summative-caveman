@@ -14,6 +14,11 @@ package com.caveman.game;
  */
 public class Key extends Items{
     
+    /**
+     * 
+     * @param effect of the item
+     * @param name  of the item
+     */
     public Key(int effect, String name){
         super(effect, name);
     }

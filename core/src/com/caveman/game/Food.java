@@ -17,10 +17,16 @@ public class Food extends Items {
     Player player;
     private boolean eaten; 
     
+    
+    
     public Food(int effect, String name){
         super(effect, name);
     }
     
+    /**
+     * 
+     * @return eat adds +100 health to player 
+     */
     public boolean eat(){
         if(eaten == true){
             // nothing happens
