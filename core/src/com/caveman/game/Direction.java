@@ -9,7 +9,7 @@ package com.caveman.game;
  *
  * @author macdn5071
  */
-public class Direction {
+public class Direction extends Bullet{
     
 
 }

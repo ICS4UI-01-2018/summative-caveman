@@ -32,10 +32,13 @@ public class Player {
     private int numItems = 0;
     Food food;
     Key key;
+    Door door;
     Shield shield;
+    Sword sword;
     private int numFood = 0;
     private int numKey = 0;
     private int numShield = 0;
+    private boolean swording;
 
     /**
      * 
@@ -87,7 +90,7 @@ public class Player {
                 if(items == food){
                     numFood++;
                 }else if(items == key){
-                    Door.unlock();
+                    door.unlock();
                 }else if(items == shield){
                     numShield++;
                 }
@@ -114,8 +117,6 @@ public class Player {
                 if(items == food && numFood > 0){
                     food.eat();
                     numFood--;
-                }else if(items == key && numKey > 0){
-                    // key
                 }else if(items == shield && numShield > 0){
                     shield.Shielded();
                     numShield--;
@@ -186,7 +187,7 @@ public class Player {
             health = 0;
         }
     }
-
+    
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(player.x, player.y, player.width, player.height);
     }

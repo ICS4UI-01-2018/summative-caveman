@@ -15,9 +15,20 @@ package com.caveman.game;
 public class Slasher extends Enemy {
 
     
-
-    public Slasher(float x, float y, int health, int damage, int speed, int attackRange) {
-        super(x, y, health, damage, speed, attackRange);
+    /**
+     *
+     * refer to enemy class for javadoc
+     * @param x
+     * @param y
+     * @param health
+     * @param damage
+     * @param speed
+     * @param attackRange
+     * @param width
+     * @param height
+     */
+    public Slasher(float x, float y, int health, int damage, int speed, int attackRange, int width, int height) {
+        super(x, y, health, damage, speed, attackRange, width, height);
         this.speed = 15;
         this.attackRange = 10;
         this.damage = 50;

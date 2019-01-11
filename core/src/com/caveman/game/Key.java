@@ -13,11 +13,8 @@ package com.caveman.game;
  * @author macdn5071
  */
 public class Key extends Items{
-   
     
     public Key(int effect, String name){
         super(effect, name);
     }
-    
-   
 }

@@ -36,12 +36,4 @@ public class Sword extends Items{
             Attack = false; 
         }
     }
-    
-    public boolean Attacking(){
-        if(enemy.attack == true){
-            return Attack = true;
-        }else{
-            return Attack = false;
-        }
-    }
 }
