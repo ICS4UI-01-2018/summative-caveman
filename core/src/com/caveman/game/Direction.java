@@ -5,11 +5,17 @@
  */
 package com.caveman.game;
 
+
+
 /**
  *
  * @author macdn5071
  */
-public class Direction extends Bullet{
-    
+public class Direction extends Bullet {
 
+    public Direction(float x, float y) {
+        super(x, y);
+    }
+    
+    
 }
