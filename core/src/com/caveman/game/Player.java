@@ -24,7 +24,6 @@ public class Player {
     public int health;
     public int damage;
     private boolean collide;
-    private int hitCount;
     private boolean alive;
     Items items;
     private boolean pickUp;
