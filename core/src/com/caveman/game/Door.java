@@ -23,6 +23,10 @@ public class Door extends Wall {
         
     }
 
+    /**
+     * a method to unlock the door which blocks player
+     * by making height and width as 0, remove the door.
+     */
     public void unlock() {
         door.height = 0;
         door.width = 0;

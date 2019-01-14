@@ -42,6 +42,10 @@ public class Shield extends Items {
         }
     }
     
+    /**
+     * if the player activate the shield, activate shield method above. Then
+     * @return shielded = false
+     */
     public boolean Shielded(){
         if(Shielded == true){
             Shield();

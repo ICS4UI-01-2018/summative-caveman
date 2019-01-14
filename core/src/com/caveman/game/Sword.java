@@ -18,6 +18,12 @@ public class Sword extends Items{
     Player player; 
     private boolean Attack;
     
+    /**
+     * Refer to Items
+     * @param effect 
+     * @param range that player can attack 
+     * @param name 
+     */
     public Sword(int effect, int range, String name){
         super(effect, name);
     
