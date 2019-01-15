@@ -204,6 +204,7 @@ public class Caveman extends ApplicationAdapter {
         slasher.draw(shapeBatch);
         
         
+        
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
