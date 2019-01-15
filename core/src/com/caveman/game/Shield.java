@@ -22,10 +22,6 @@ public class Shield extends Items {
     public Shield(int effect, String name, int range){
         super(effect,name);
         this.range = range;
-        
-        if(enemy.attack == true){
-            enemy.attack = false;
-        }
     }
     
     /**

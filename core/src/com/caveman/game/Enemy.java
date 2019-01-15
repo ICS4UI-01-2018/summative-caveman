@@ -56,7 +56,7 @@ public class Enemy {
     }
 
     /**
-     *
+     * 
      * @return enemy X position
      */
     public float getEnemyX() {
