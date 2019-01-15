@@ -20,25 +20,26 @@ public class Caveman extends ApplicationAdapter {
     private ShapeRenderer shapeBatch;
     // private Texture img;
     private Player player;
-    // private ArrayList<Enemies> enemies;
+    private ArrayList<Enemy> enemy;
     private ArrayList<Wall> walls;
     private Rectangle healthBar;
     private Rectangle door;
     private OrthographicCamera cam;
     private FitViewport viewport;
-    private ArrayList<Enemy> enemies;
     private boolean upAllowed;
     private boolean leftAllowed;
     private boolean rightAllowed;
     private boolean downAllowed;
     private int timer;
+    public Slasher slasher;
+    public Shooter shooter;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
         walls = new ArrayList<Wall>();
-        enemies = new ArrayList<Enemy>();
+        enemy = new ArrayList<Enemy>();
         //img = new Texture("badlogic.jpg");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
@@ -54,7 +55,8 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Door(325, 550, 150, 25, 1));
         player = new Player(390, 290, 20, 20, 5, 4);
         //enemies
-        //enemies.add(new Enemy(300, 150, Enemy.health, Enemy.damage, Enemy.speed, Enemy.attackRange, Enemy.width, Enemy.height));
+        //enemy.add(new Enemy(300, 150, slasher.health, slasher.damage, slasher.speed, slasher.attackRange, slasher.width, slasher.height));
+        //enemy.add(new Enemy(275, 150, shooter.health, shooter.damage, shooter.speed, shooter.attackRange, shooter.width, shooter.height));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -171,11 +173,11 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && downAllowed) {
             player.moveDown();
         }
-        for (int i = 0; i < enemies.size(); i++) {
-
-            //if(player.collidesWith(enemies.get(i))){
-            //}
-        }
+        
+        shapeBatch.setColor(Color.CHARTREUSE);
+           //enemy.get(1).draw(shapeBatch);
+           //enemy.get(2).draw(shapeBatch);
+        
 
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
 
@@ -200,7 +202,7 @@ public class Caveman extends ApplicationAdapter {
         }
         shapeBatch.setColor(Color.GREEN);
         shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
-        enemies.get(1).draw(shapeBatch);
+        
         
         
         shapeBatch.end();
