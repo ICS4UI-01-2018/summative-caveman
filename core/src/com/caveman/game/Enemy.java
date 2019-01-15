@@ -33,6 +33,8 @@ public class Enemy {
     public boolean attack;
     public boolean tracking;
     public Direction direction;
+    public int width;
+    public int height;
 
     /**
      *
