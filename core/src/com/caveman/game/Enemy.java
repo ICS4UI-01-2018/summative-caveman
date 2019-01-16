@@ -58,7 +58,7 @@ public class Enemy {
     }
 
     /**
-     *
+     * 
      * @return enemy X position
      */
     public float getEnemyX() {
@@ -115,7 +115,7 @@ public class Enemy {
                 }
             }
         } else if (dead == true) {
-
+            
         }
     }
 

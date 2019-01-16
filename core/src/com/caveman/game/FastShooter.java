@@ -42,7 +42,7 @@ public class FastShooter extends Shooter {
 
     /**
      *
-     * @return
+     * @return their x position
      */
     @Override
     public float getEnemyX() {
@@ -51,7 +51,7 @@ public class FastShooter extends Shooter {
 
     /**
      *
-     * @return
+     * @return their y position
      */
     @Override
     public float getEnemyY() {

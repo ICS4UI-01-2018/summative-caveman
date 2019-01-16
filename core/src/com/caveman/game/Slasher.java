@@ -36,7 +36,7 @@ public class Slasher extends Enemy {
 
     /**
      *
-     * @return
+     * @return their x position
      */
     @Override
     public float getEnemyX() {
@@ -45,7 +45,7 @@ public class Slasher extends Enemy {
 
     /**
      *
-     * @return
+     * @return their y position
      */
     @Override
     public float getEnemyY() {
