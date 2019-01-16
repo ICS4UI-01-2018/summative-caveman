@@ -55,8 +55,8 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Door(325, 550, 150, 25, 1));
         player = new Player(390, 290, 20, 20, 5, 4);
         //enemies
-        //enemy.add(new Enemy(300, 150, slasher.health, slasher.damage, slasher.speed, slasher.attackRange, slasher.width, slasher.height));
-        //enemy.add(new Enemy(275, 150, shooter.health, shooter.damage, shooter.speed, shooter.attackRange, shooter.width, shooter.height));
+        enemy.add(new Enemy(300, 150, slasher.health, slasher.damage, slasher.speed, slasher.attackRange, slasher.width, slasher.height));
+        enemy.add(new Enemy(275, 150, shooter.health, shooter.damage, shooter.speed, shooter.attackRange, shooter.width, shooter.height));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -175,8 +175,8 @@ public class Caveman extends ApplicationAdapter {
         }
         
         shapeBatch.setColor(Color.CHARTREUSE);
-           //enemy.get(1).draw(shapeBatch);
-           //enemy.get(2).draw(shapeBatch);
+           enemy.get(1).draw(shapeBatch);
+           enemy.get(2).draw(shapeBatch);
         
 
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
