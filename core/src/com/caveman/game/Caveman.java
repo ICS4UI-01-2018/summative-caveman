@@ -173,7 +173,7 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && downAllowed) {
             player.moveDown();
         }
-        
+         
         shapeBatch.setColor(Color.CHARTREUSE);
            enemy.get(1).draw(shapeBatch);
            enemy.get(2).draw(shapeBatch);
