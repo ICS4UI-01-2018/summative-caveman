@@ -21,6 +21,11 @@ public class Food extends Items {
         super(effect, name);
     }
     
+    /**
+     * When the player eat the food (==have not eaten the food), player's health
+     * increases by 100 at once. If the player already ate the food,
+     * @return eaten = true
+     */
     public boolean eat(){
         if(eaten == true){
             // nothing happen

@@ -33,6 +33,12 @@ public class Items {
         return this.name;
     }
 
+    /**
+     * create new items on the field 
+     * @param x x-position of the new items will be located
+     * @param y y-position of the new items will be located
+     * @return new items. 
+     */
     public Items CreateNew(float x, float y){
         Items i = new Items(effect, name);
         i.setPosition(x, y);
