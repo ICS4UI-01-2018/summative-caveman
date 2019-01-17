@@ -27,10 +27,10 @@ public class Caveman extends ApplicationAdapter {
     private OrthographicCamera cam;
     private FitViewport viewport;
     private ArrayList<Enemy> enemies;
-    private boolean upAllowed;
-    private boolean leftAllowed;
-    private boolean rightAllowed;
-    private boolean downAllowed;
+    private boolean pUpAllowed;
+    private boolean pLeftAllowed;
+    private boolean pRightAllowed;
+    private boolean pDownAllowed;
     private int timer;
 
     @Override
@@ -46,15 +46,15 @@ public class Caveman extends ApplicationAdapter {
         cam.position.x = 400;
         cam.position.y = 300;
         cam.update();
-        upAllowed = true;
-        downAllowed = true;
-        rightAllowed = true;
-        leftAllowed = true;
+        pUpAllowed = true;
+        pDownAllowed = true;
+        pRightAllowed = true;
+        pLeftAllowed = true;
         healthBar = new Rectangle(100, 25, 600, 25);
         walls.add(new Door(325, 550, 150, 25, 1));
         player = new Player(390, 290, 20, 20, 5, 4);
         //enemies
-        //enemies.add(new Enemy(300, 150, Enemy.health, Enemy.damage, Enemy.speed, Enemy.attackRange, Enemy.width, Enemy.height));
+        enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 20, 20));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -121,7 +121,7 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Wall(2650, 1525, 100, 25, 0));
         walls.add(new Wall(2400, 1200, 100, 25, 0));
         walls.add(new Wall(2650, 1200, 100, 25, 0));
-        
+
         timer = 0;
 
     }
@@ -131,44 +131,92 @@ public class Caveman extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        upAllowed = true;
-        downAllowed = true;
-        rightAllowed = true;
-        leftAllowed = true;
+        pUpAllowed = true;
+        pDownAllowed = true;
+        pRightAllowed = true;
+        pLeftAllowed = true;
+        for (int i = 0; i < enemies.size(); i++) {
 
+            Enemy e = enemies.get(i);
+            e.changeUpAllowed(true);
+            e.changeRightAllowed(true);
+            e.changeDownAllowed(true);
+            e.changeLeftAllowed(true);
+        }
         for (int i = 0; i < walls.size(); i++) {
             if (player.collidesWith(walls.get(i).getBounds()) && (player.getPlayerX() + 20) > (walls.get(i).getBounds().x + walls.get(i).getBounds().width)) {
-                leftAllowed = false;
+                pLeftAllowed = false;
             } else if (player.collidesWith(walls.get(i).getBounds()) && (player.getPlayerX() < walls.get(i).getBounds().x)) {
-                rightAllowed = false;
+                pRightAllowed = false;
             } else if (player.collidesWith(walls.get(i).getBounds()) && (player.getPlayerY() < walls.get(i).getBounds().y)) {
-                upAllowed = false;
+                pUpAllowed = false;
             } else if (player.collidesWith(walls.get(i).getBounds()) && (player.getPlayerY() + 20) > (walls.get(i).getBounds().y + walls.get(i).getBounds().height)) {
-                downAllowed = false;
+                pDownAllowed = false;
             }
-            if (player.collidesWith(walls.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
-                healthBar.width = healthBar.width - 25;
-                timer = 600;
 
-            } else if (timer != 0) {
-                timer = timer - 1;
-            }
             if (player.collidesWith(walls.get(i).getBounds()) && walls.get(i) instanceof Door) {
-                Door d = (Door)walls.get(i);
+                Door d = (Door) walls.get(i);
                 d.unlock();
             }
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W) && upAllowed) {
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy e = enemies.get(i);
+            if (e.collidesWith(player.getBounds()) && (e.getEnemyX() + 20) > (player.getBounds().x + player.getBounds().width)) {
+                e.changeLeftAllowed(false);
+                pRightAllowed = false;
+            }
+            if (e.collidesWith(player.getBounds()) && (e.getEnemyX() < player.getBounds().x)) {
+                e.changeRightAllowed(false);
+                pLeftAllowed = false;
+            }
+            if (e.collidesWith(player.getBounds()) && (e.getEnemyY() < player.getBounds().y)) {
+                e.changeUpAllowed(false);
+                pDownAllowed = false;
+            }
+            if (e.collidesWith(player.getBounds()) && (e.getEnemyY() + 20) > (player.getBounds().y + player.getBounds().height)) {
+                e.changeDownAllowed(false);
+                pUpAllowed = false;
+            }
+
+            for (int j = 0; j < walls.size(); j++) {
+                if (e.collidesWith(walls.get(j).getBounds()) && (e.getEnemyX() + 20) > (walls.get(j).getBounds().x + walls.get(j).getBounds().width)) {
+                    e.changeLeftAllowed(false);
+                }
+                if (e.collidesWith(walls.get(j).getBounds()) && (e.getEnemyX() < walls.get(j).getBounds().x)) {
+                    e.changeRightAllowed(false);
+                }
+                if (e.collidesWith(walls.get(j).getBounds()) && (e.getEnemyY() < walls.get(j).getBounds().y)) {
+                    e.changeUpAllowed(false);
+                }
+                if (e.collidesWith(walls.get(j).getBounds()) && (e.getEnemyY() + 20) > (walls.get(j).getBounds().y + walls.get(j).getBounds().height)) {
+                    e.changeDownAllowed(false);
+                }
+            }
+        }
+
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).trackPlayer(player);
+
+            if (player.collidesWith(enemies.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
+                healthBar.width = healthBar.width - enemies.get(i).getDamage();
+                timer = 75;
+            } else if (timer != 0) {
+                timer = timer - 1;
+            }
+
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && pUpAllowed) {
             player.moveUp();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A) && leftAllowed) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A) && pLeftAllowed) {
             player.moveLeft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D) && rightAllowed) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) && pRightAllowed) {
             player.moveRight();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S) && downAllowed) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
         }
         for (int i = 0; i < enemies.size(); i++) {
@@ -184,10 +232,13 @@ public class Caveman extends ApplicationAdapter {
         cam.update();
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
-        shapeBatch.setColor(Color.GOLD);
 
+        for (int i = 0; i < enemies.size(); i++) {
+            shapeBatch.setColor(Color.CYAN);
+            enemies.get(i).draw(shapeBatch);
+        }
+        shapeBatch.setColor(Color.GOLD);
         player.draw(shapeBatch);
-        shapeBatch.setColor(Color.GRAY);
         for (int i = 0; i < walls.size(); i++) {
             if (walls.get(i).getColourNum() == 0) {
                 shapeBatch.setColor(Color.GRAY);
@@ -198,11 +249,11 @@ public class Caveman extends ApplicationAdapter {
             shapeBatch.rect(walls.get(i).getBounds().x, walls.get(i).getBounds().y, walls.get(i).getBounds().width, walls.get(i).getBounds().height);
 
         }
+
         shapeBatch.setColor(Color.GREEN);
         shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
-        enemies.get(1).draw(shapeBatch);
-        
-        
+        //enemies.get(1).draw(shapeBatch);
+
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
