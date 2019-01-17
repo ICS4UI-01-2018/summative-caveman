@@ -5,6 +5,7 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.sun.javafx.scene.traversal.Direction;
 
 /**
@@ -17,7 +18,8 @@ import com.sun.javafx.scene.traversal.Direction;
 public class Bullet {
 
     private Direction direction;
-    private float speed = 5;
+    //private Rectangle proj;
+    private final float speed = 5;
     private float x;
     private float y;
     Enemy enemy;
@@ -34,6 +36,9 @@ public class Bullet {
     public void moveInDirection() {
         x += speed;
         y += speed;
-
     }
+    
+    //public boolean collison(Rectangle proj){
+    //    return Bullet.overlaps();
+    //}
 }
