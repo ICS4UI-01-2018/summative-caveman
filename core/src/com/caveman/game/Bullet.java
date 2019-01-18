@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Bullet {
 
-    //private Direction direction;
+    private Direction direction;
     //private Rectangle proj;
     private final float speed = 5;
     private float x;
@@ -29,16 +29,16 @@ public class Bullet {
         this.y = y;
     }
 
-//    public void shoot(Direction direction) {
-//        this.direction = direction;
-//    }
+    public void shoot(Direction direction) {
+        this.direction = direction;
+    }
 
     public void moveInDirection() {
         x += speed;
         y += speed;
     }
     
-    //public boolean collison(Rectangle proj){
-    //    return Bullet.overlaps();
-    //}
+//    public boolean collison(Rectangle proj){
+//        return Bullet.overlaps();
+//    }
 }

@@ -45,6 +45,11 @@ public class Items {
         return i;
     }
     
+    /**
+     * set the position of new items 
+     * @param x x-position of the new items will be located
+     * @param y y-position of the new items will be located
+     */
     public void setPosition(float x, float y){
         this.x = x;
         this.y = y;

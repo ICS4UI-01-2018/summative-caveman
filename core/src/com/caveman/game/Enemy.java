@@ -35,7 +35,7 @@ public class Enemy {
     public boolean leftAllowed;
     public boolean rightAllowed;
     public boolean downAllowed;
-    //public Direction direction;
+    public Direction direction;
 
     /**
      *
@@ -135,23 +135,23 @@ public class Enemy {
                 // they follow using their x or y position modified by their speed stat
                 // their direction updates too so they can attack accurately
                 enemy.x = enemy.x - speed;
-                //direction = Direction.LEFT;
+                direction = Direction.LEFT;
             } else if (enemy.x + 10 < playX && rightAllowed) {
                 enemy.x = enemy.x + speed;
-                // direction = Direction.RIGHT;
+                 direction = Direction.RIGHT;
             } else {
                 enemy.x = enemy.x;
-                //direction = direction;
+                direction = direction;
             }
             if (enemy.y + 10 > playY && downAllowed) {
                 enemy.y = enemy.y - speed;
-                //   direction = Direction.DOWN;
+                   direction = Direction.DOWN;
             } else if (enemy.y + 10 < playY && upAllowed) {
                 enemy.y = enemy.y + speed;
-                //     direction = Direction.UP;
+                     direction = Direction.UP;
             } else {
                 enemy.y = enemy.y;
-                //direction = direction; 
+                direction = direction; 
             }
 
         }
