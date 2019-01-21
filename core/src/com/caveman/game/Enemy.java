@@ -125,7 +125,6 @@ public class Enemy {
 
         float distanceSQ = (this.enemy.x + 10 - playX) * (this.enemy.x + 10 - playX) + (this.enemy.y + 10 - playY) * (this.enemy.y + 10 - playY);
         if (distanceSQ > 300 * 300) {
-            System.out.println("Not close enough " + distanceSQ);
             return;
         }
         // if the enemy is not dead, follow the player up to their range times 3

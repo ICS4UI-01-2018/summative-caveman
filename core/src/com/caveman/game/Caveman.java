@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
@@ -18,9 +19,10 @@ public class Caveman extends ApplicationAdapter {
 
     private SpriteBatch batch;
     private ShapeRenderer shapeBatch;
-    // private Texture img;
+    private Texture eImg;
+    private Texture pImg1;
     private Player player;
-    private ArrayList<Enemy> enemy;
+
     private ArrayList<Wall> walls;
     private Rectangle healthBar;
     private Rectangle door;
@@ -31,17 +33,19 @@ public class Caveman extends ApplicationAdapter {
     private boolean pLeftAllowed;
     private boolean pRightAllowed;
     private boolean pDownAllowed;
+    private float mouseX;
+    private float mouseY;
+    private float rotate;
     private int timer;
-    public Slasher slasher;
-    public Shooter shooter;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
         walls = new ArrayList<Wall>();
-        enemy = new ArrayList<Enemy>();
-        //img = new Texture("badlogic.jpg");
+        enemies = new ArrayList<Enemy>();
+        eImg = new Texture("slime.png");
+        pImg1 = new Texture("guy1.jpg");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
         viewport.apply();
@@ -54,9 +58,9 @@ public class Caveman extends ApplicationAdapter {
         pLeftAllowed = true;
         healthBar = new Rectangle(100, 25, 600, 25);
         walls.add(new Door(325, 550, 150, 25, 1));
-        player = new Player(390, 290, 20, 20, 5, 4);
+        player = new Player(390, 290, 40, 40, 5, 4);
         //enemies
-        enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 20, 20));
+        enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 40, 40));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -113,17 +117,23 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Wall(1575, 1425, 600, 25, 0));
         walls.add(new Wall(2150, 1450, 25, 150, 0));
         walls.add(new Wall(2150, 1700, 25, 150, 0));
+        
+        
+        
         //sixth hallway
-        walls.add(new Wall(2500, 1075, 25, 150, 0));
-        walls.add(new Wall(2625, 1075, 25, 150, 0));
+        walls.add(new Wall(2500, 1075, 25, 200, 0));
+        walls.add(new Wall(2625, 1075, 25, 200, 0));
         //seventh room
-        walls.add(new Wall(2375, 1200, 25, 350, 0));
-        walls.add(new Wall(2750, 1200, 25, 350, 0));
-        walls.add(new Wall(2400, 1525, 100, 25, 0));
-        walls.add(new Wall(2650, 1525, 100, 25, 0));
-        walls.add(new Wall(2400, 1200, 100, 25, 0));
-        walls.add(new Wall(2650, 1200, 100, 25, 0));
-
+        walls.add(new Wall(2375, 1250, 25, 350, 0));
+        walls.add(new Wall(2750, 1250, 25, 350, 0));
+        walls.add(new Wall(2400, 1575, 100, 25, 0));
+        walls.add(new Wall(2650, 1575, 100, 25, 0));
+        walls.add(new Wall(2400, 1250, 100, 25, 0));
+        walls.add(new Wall(2650, 1250, 100, 25, 0));
+        //seventh hallway
+        walls.add(new Wall(2175, 1575, 200, 25, 0));
+        walls.add(new Wall(2175, 1700, 200, 25, 0));
+        
         timer = 0;
 
     }
@@ -138,7 +148,6 @@ public class Caveman extends ApplicationAdapter {
         pRightAllowed = true;
         pLeftAllowed = true;
         for (int i = 0; i < enemies.size(); i++) {
-
             Enemy e = enemies.get(i);
             e.changeUpAllowed(true);
             e.changeRightAllowed(true);
@@ -196,6 +205,10 @@ public class Caveman extends ApplicationAdapter {
                 }
             }
         }
+        mouseX = Gdx.input.getX();
+        mouseY = Gdx.input.getY();
+                rotate = MathUtils.atan2(300-mouseY,400-mouseX) + (float)Math.PI;
+               
 
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
@@ -221,12 +234,10 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
         }
-         
-        shapeBatch.setColor(Color.CHARTREUSE);
-           enemy.get(1).draw(shapeBatch);
-           enemy.get(2).draw(shapeBatch);
         
-
+        
+        
+        
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
 
         cam.position.x = player.getPlayerX() + (player.getBounds().width / 2);
@@ -234,13 +245,10 @@ public class Caveman extends ApplicationAdapter {
         cam.update();
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
-
-        for (int i = 0; i < enemies.size(); i++) {
-            shapeBatch.setColor(Color.CYAN);
-            enemies.get(i).draw(shapeBatch);
-        }
         shapeBatch.setColor(Color.GOLD);
         player.draw(shapeBatch);
+        
+        shapeBatch.line(player.getPlayerX()+player.getBounds().width/2, player.getPlayerY()+player.getBounds().height/2, player.getPlayerX()+player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getPlayerY()+player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)));
         for (int i = 0; i < walls.size(); i++) {
             if (walls.get(i).getColourNum() == 0) {
                 shapeBatch.setColor(Color.GRAY);
@@ -251,7 +259,7 @@ public class Caveman extends ApplicationAdapter {
             shapeBatch.rect(walls.get(i).getBounds().x, walls.get(i).getBounds().y, walls.get(i).getBounds().width, walls.get(i).getBounds().height);
 
         }
-
+        
         shapeBatch.setColor(Color.GREEN);
         shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
         //enemies.get(1).draw(shapeBatch);
@@ -259,7 +267,13 @@ public class Caveman extends ApplicationAdapter {
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
-        //batch.draw(img, 0, 0);
+        
+        batch.draw(pImg1, player.getBounds().x, player.getBounds().y, 40, 40);
+        
+        for (int i = 0; i < enemies.size(); i++) {
+            
+        batch.draw(eImg, enemies.get(i).getBounds().x, enemies.get(i).getBounds().y, 40, 40);
+        }
         batch.end();
     }
 
