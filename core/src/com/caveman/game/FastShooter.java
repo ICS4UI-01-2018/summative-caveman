@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author choij2116
  * @author modia9548
- * @author tarra7926
+ * @author tarra7926    
  * @author macdn5071
  */
 public class FastShooter extends Shooter {
