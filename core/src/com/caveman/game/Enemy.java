@@ -5,11 +5,10 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.sun.javafx.scene.traversal.Direction;
-
-
+//import com.sun.javafx.scene.traversal.Direction;
 
 /**
  *
@@ -32,9 +31,11 @@ public class Enemy {
     Player player;
     public boolean attack;
     public boolean tracking;
+    public boolean upAllowed;
+    public boolean leftAllowed;
+    public boolean rightAllowed;
+    public boolean downAllowed;
     public Direction direction;
-    public int width;
-    public int height;
 
     /**
      *
@@ -58,11 +59,11 @@ public class Enemy {
     }
 
     /**
-     *
+     * 
      * @return enemy X position
      */
     public float getEnemyX() {
-        return this.xPos;
+        return enemy.x;
     }
 
     /**
@@ -70,7 +71,7 @@ public class Enemy {
      * @return enemy Y position
      */
     public float getEnemyY() {
-        return this.yPos;
+        return enemy.y;
     }
 
     /**
@@ -78,6 +79,41 @@ public class Enemy {
      */
     public void health() {
 
+        
+    }
+
+   
+
+    public void changeUpAllowed(boolean upAllowed) {
+        this.upAllowed = upAllowed;
+    }
+
+    public void changeLeftAllowed(boolean leftAllowed) {
+        this.leftAllowed = leftAllowed;
+    }
+
+    public void changeRightAllowed(boolean rightAllowed) {
+        this.rightAllowed = rightAllowed;
+    }
+
+    public void changeDownAllowed(boolean downAllowed) {
+        this.downAllowed = downAllowed;
+    }
+
+    public boolean getUpAllowed() {
+        return upAllowed;
+    }
+
+    public boolean getLeftAllowed() {
+        return leftAllowed;
+    }
+
+    public boolean getRightAllowed() {
+        return rightAllowed;
+    }
+
+    public boolean getDownAllowed() {
+        return downAllowed;
     }
 
     /**
@@ -85,35 +121,40 @@ public class Enemy {
      * @param player tracks the player's movement
      */
     public void trackPlayer(Player player) {
-        float playX = player.getPlayerX();
-        float playY = player.getPlayerY();
+
+        float playX = player.getPlayerX() + player.getBounds().width / 2;
+        float playY = player.getPlayerY() + player.getBounds().height / 2;
+
+        float distanceSQ = (this.enemy.x + 10 - playX) * (this.enemy.x + 10 - playX) + (this.enemy.y + 10 - playY) * (this.enemy.y + 10 - playY);
+        if (distanceSQ > 300 * 300) {
+            System.out.println("Not close enough " + distanceSQ);
+            return;
+        }
         // if the enemy is not dead, follow the player up to their range times 3
         if (dead == false) {
-            if (player.getPlayerX() <= attackRange * 3) {
-                if (this.xPos > playX) {
-                    // they follow using their x or y position modified by their speed stat
-                    // their direction updates too so they can attack accurately
-                    this.xPos = xPos - speed;
-                    direction = Direction.LEFT;
-                } else if (this.xPos < playX) {
-                    this.xPos = xPos + speed;
-                    direction = Direction.RIGHT;
-                } else {
-                    this.xPos = xPos;
-                    direction = direction;
-                }
-                if (this.yPos > playY) {
-                    this.yPos = yPos - speed;
-                    direction = Direction.DOWN;
-                } else if (this.yPos < playY) {
-                    this.yPos = yPos + speed;
-                    direction = Direction.UP;
-                } else {
-                    this.yPos = yPos;
-                    direction = direction; 
-                }
+
+            if (enemy.x + 10 > playX && leftAllowed) {
+                // they follow using their x or y position modified by their speed stat
+                // their direction updates too so they can attack accurately
+                enemy.x = enemy.x - speed;
+//                direction = Direction.LEFT;
+            } else if (enemy.x + 10 < playX && rightAllowed) {
+                enemy.x = enemy.x + speed;
+//                 direction = Direction.RIGHT;
+            } else {
+                enemy.x = enemy.x;
+                direction = direction;
             }
-        } else if (dead == true) {
+            if (enemy.y + 10 > playY && downAllowed) {
+                enemy.y = enemy.y - speed;
+//                   direction = Direction.DOWN;
+            } else if (enemy.y + 10 < playY && upAllowed) {
+                enemy.y = enemy.y + speed;
+//                     direction = Direction.UP;
+            } else {
+                enemy.y = enemy.y;
+                direction = direction; 
+            }
 
         }
     }
@@ -133,7 +174,7 @@ public class Enemy {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-    
+
     /**
      * tells the game if the enemy is dead
      */
@@ -177,4 +218,19 @@ public class Enemy {
         return attack == true;
     }
 
+    public Rectangle getBounds() {
+        return enemy;
+    }
+
+    public int getAttackRange() {
+        return attackRange;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public boolean collidesWith(Rectangle rect) {
+        return enemy.overlaps(rect);
+    }
 }

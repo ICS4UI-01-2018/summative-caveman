@@ -35,7 +35,6 @@ public class Player {
     Shield shield;
     Sword sword;
     private int numFood = 0;
-    private int numKey = 0;
     private int numShield = 0;
     private boolean swording;
 

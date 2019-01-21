@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author choij2116
  * @author modia9548
- * @author tarra7926
+ * @author tarra7926    
  * @author macdn5071
  */
 public class FastShooter extends Shooter {
@@ -43,7 +43,7 @@ public class FastShooter extends Shooter {
 
     /**
      *
-     * @return
+     * @return their x position
      */
     @Override
     public float getEnemyX() {
@@ -52,7 +52,7 @@ public class FastShooter extends Shooter {
 
     /**
      *
-     * @return
+     * @return their y position
      */
     @Override
     public float getEnemyY() {

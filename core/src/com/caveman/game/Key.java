@@ -15,9 +15,9 @@ package com.caveman.game;
 public class Key extends Items{
     
     /**
-     * 
-     * @param effect of the item
-     * @param name  of the item
+     * Open the door when the player get a key 
+     * @param effect
+     * @param name 
      */
     public Key(int effect, String name){
         super(effect, name);

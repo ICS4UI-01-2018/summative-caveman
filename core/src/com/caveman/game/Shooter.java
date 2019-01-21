@@ -73,7 +73,7 @@ public class Shooter extends Enemy {
                 if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
                     Bullet bullet = new Bullet(xPos, yPos);
                     firedShots.add(bullet);
-                    bullet.shoot(enemy.direction);
+                    // bullet.shoot(enemy.direction);
                     attack = false;
                     if(bullet.equals(player.x)){
                         player.health = player.health - damage;
