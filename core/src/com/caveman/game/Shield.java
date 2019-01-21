@@ -19,8 +19,8 @@ public class Shield extends Items {
     Enemy enemy;
     private boolean Shielded;
     
-    public Shield(int effect, String name, int range){
-        super(effect,name);
+    public Shield(int effect, String name, float x, float y, int width, int height, int range){
+        super(effect, name, x, y,width, height);
         this.range = range;
     }
     

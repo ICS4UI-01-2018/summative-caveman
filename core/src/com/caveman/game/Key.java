@@ -19,7 +19,7 @@ public class Key extends Items{
      * @param effect
      * @param name 
      */
-    public Key(int effect, String name){
-        super(effect, name);
+    public Key(int effect, String name, float x, float y, int width, int height){
+        super(effect, name, x, y,width, height);
     }
 }

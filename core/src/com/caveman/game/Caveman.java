@@ -24,6 +24,7 @@ public class Caveman extends ApplicationAdapter {
     private Player player;
 
     private ArrayList<Wall> walls;
+    private ArrayList<Items> items;
     private Rectangle healthBar;
     private Rectangle door;
     private OrthographicCamera cam;
@@ -36,13 +37,16 @@ public class Caveman extends ApplicationAdapter {
     private float mouseX;
     private float mouseY;
     private float rotate;
+    private int keyCount;
     private int timer;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
+        keyCount = 0;
         walls = new ArrayList<Wall>();
+        items = new ArrayList<Items>();
         enemies = new ArrayList<Enemy>();
         eImg = new Texture("slime.png");
         pImg1 = new Texture("guy1.jpg");
@@ -61,6 +65,8 @@ public class Caveman extends ApplicationAdapter {
         player = new Player(390, 290, 40, 40, 5, 4);
         //enemies
         enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 40, 40));
+        //items
+        items.add(new Key(1, "hi", 430, 320, 20, 20));
         //first room
         walls.add(new Wall(25, 100, 25, 400, 0));
         walls.add(new Wall(750, 100, 25, 400, 0));
@@ -165,7 +171,7 @@ public class Caveman extends ApplicationAdapter {
                 pDownAllowed = false;
             }
 
-            if (player.collidesWith(walls.get(i).getBounds()) && walls.get(i) instanceof Door) {
+            if (player.collidesWith(walls.get(i).getBounds()) && walls.get(i) instanceof Door && keyCount > 0) {
                 Door d = (Door) walls.get(i);
                 d.unlock();
             }
@@ -204,7 +210,19 @@ public class Caveman extends ApplicationAdapter {
                     e.changeDownAllowed(false);
                 }
             }
+
         }
+        
+        for (int i = 0; i < items.size(); i++) {
+            if(player.collidesWith(items.get(i).getBounds())){
+            if(items.get(i) instanceof Key){
+                items.get(i).getBounds().width = 0;
+                items.get(i).getBounds().height = 0;
+                keyCount = keyCount + 1;
+            }
+            }
+        }
+        
         mouseX = Gdx.input.getX();
         mouseY = Gdx.input.getY();
                 rotate = MathUtils.atan2(300-mouseY,400-mouseX) + (float)Math.PI;
@@ -255,8 +273,12 @@ public class Caveman extends ApplicationAdapter {
             } else if (walls.get(i).getColourNum() == 1) {
                 shapeBatch.setColor(Color.BROWN);
             }
-
+            
             shapeBatch.rect(walls.get(i).getBounds().x, walls.get(i).getBounds().y, walls.get(i).getBounds().width, walls.get(i).getBounds().height);
+
+        }
+        for (int i = 0; i < items.size(); i++) {
+            shapeBatch.rect(items.get(i).getBounds().x, items.get(i).getBounds().y, items.get(i).getBounds().width, items.get(i).getBounds().height);
 
         }
         
