@@ -38,16 +38,9 @@ public class Items {
         return this.name;
     }
 
-    /**
-     * create new items on the field 
-     * @param x x-position of the new items will be located
-     * @param y y-position of the new items will be located
-     * @return new items. 
-     */
-
     
     /**
-     * set the position of new items 
+     * create and set the position of new items 
      * @param x x-position of the new items will be located
      * @param y y-position of the new items will be located
      */
