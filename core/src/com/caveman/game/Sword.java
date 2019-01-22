@@ -24,8 +24,8 @@ public class Sword extends Items{
      * @param range that player can attack 
      * @param name of item == sword
      */
-    public Sword(int effect, int range, String name){
-        super(effect, name);
+    public Sword(int effect, String name, float x, float y, int width, int height, int range){
+        super(effect, name, x, y,width, height);
     
         this.range = 15;
     }

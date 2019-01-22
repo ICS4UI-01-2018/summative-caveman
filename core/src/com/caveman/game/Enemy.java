@@ -35,7 +35,7 @@ public class Enemy {
     public boolean leftAllowed;
     public boolean rightAllowed;
     public boolean downAllowed;
-    public Direction direction;
+    
 
     /**
      *
@@ -127,7 +127,6 @@ public class Enemy {
 
         float distanceSQ = (this.enemy.x + 10 - playX) * (this.enemy.x + 10 - playX) + (this.enemy.y + 10 - playY) * (this.enemy.y + 10 - playY);
         if (distanceSQ > 300 * 300) {
-            System.out.println("Not close enough " + distanceSQ);
             return;
         }
         // if the enemy is not dead, follow the player up to their range times 3
@@ -137,23 +136,23 @@ public class Enemy {
                 // they follow using their x or y position modified by their speed stat
                 // their direction updates too so they can attack accurately
                 enemy.x = enemy.x - speed;
-//                direction = Direction.LEFT;
+                
             } else if (enemy.x + 10 < playX && rightAllowed) {
                 enemy.x = enemy.x + speed;
-//                 direction = Direction.RIGHT;
+                 
             } else {
                 enemy.x = enemy.x;
-                direction = direction;
+                
             }
             if (enemy.y + 10 > playY && downAllowed) {
                 enemy.y = enemy.y - speed;
-//                   direction = Direction.DOWN;
+                   
             } else if (enemy.y + 10 < playY && upAllowed) {
                 enemy.y = enemy.y + speed;
-//                     direction = Direction.UP;
+                     
             } else {
                 enemy.y = enemy.y;
-                direction = direction; 
+                 
             }
 
         }

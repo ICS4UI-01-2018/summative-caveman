@@ -17,10 +17,8 @@ public class Food extends Items {
     Player player;
     private boolean eaten; 
     
-    
-    
-    public Food(int effect, String name){
-        super(effect, name);
+    public Food(int effect, String name, float x, float y, int width, int height){
+        super(effect, name, x, y,width, height);
     }
     
     /**

@@ -5,6 +5,8 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.math.Rectangle;
+
 /**
  *
  * @author choij2116
@@ -18,10 +20,13 @@ public class Items {
     private String name;
     private float x;
     private float y;
+    private Rectangle item;
     
-    public Items(int effect, String name){
+    public Items(int effect, String name, float x, float y, int width, int height){
         this.effect = effect;
-        
+        this.x = x;
+        this.y = y;
+        item = new Rectangle(x, y, width, height);
         this.name = name;
     }
 
@@ -44,11 +49,7 @@ public class Items {
      * @param y y-position of the new items will be located
      * @return new items. 
      */
-    public Items CreateNew(float x, float y){
-        Items i = new Items(effect, name);
-        i.setPosition(x, y);
-        return i;
-    }
+
     
     /**
      * set the position of new items 
@@ -59,4 +60,10 @@ public class Items {
         this.x = x;
         this.y = y;
     }
+    
+    
+    public Rectangle getBounds() {
+        return item;
+    }  
+    
 }
