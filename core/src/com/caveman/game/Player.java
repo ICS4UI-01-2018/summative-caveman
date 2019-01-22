@@ -5,6 +5,7 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -186,9 +187,7 @@ public class Player {
         }
     }
     
-    public void draw(ShapeRenderer shapeBatch) {
-        shapeBatch.rect(player.x, player.y, player.width, player.height);
-    }
+    
     
     public boolean collidesWith(Rectangle rect) {
         return player.overlaps(rect);

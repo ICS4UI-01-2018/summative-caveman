@@ -20,7 +20,14 @@ public class Caveman extends ApplicationAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     private Texture eImg;
-    private Texture pImg1;
+    private Texture pImg0;
+    private Texture pImg90;
+    private Texture pImg270;
+    private Texture pImg180;
+    private boolean dLeft;
+    private boolean dRight;
+    private boolean dUp;
+    private boolean dDown;
     private Player player;
 
     private ArrayList<Wall> walls;
@@ -48,8 +55,16 @@ public class Caveman extends ApplicationAdapter {
         walls = new ArrayList<Wall>();
         items = new ArrayList<Items>();
         enemies = new ArrayList<Enemy>();
+        dLeft = false;
+        dRight = false;
+        dUp = false;
+        dDown = false;
+
         eImg = new Texture("slime.png");
-        pImg1 = new Texture("guy1.jpg");
+        pImg0 = new Texture("guy0.png");
+        pImg90 = new Texture("guy90.png");
+        pImg180 = new Texture("guy180.png");
+        pImg270 = new Texture("guy270.png");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
         viewport.apply();
@@ -123,9 +138,7 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Wall(1575, 1425, 600, 25, 0));
         walls.add(new Wall(2150, 1450, 25, 150, 0));
         walls.add(new Wall(2150, 1700, 25, 150, 0));
-        
-        
-        
+
         //sixth hallway
         walls.add(new Wall(2500, 1075, 25, 200, 0));
         walls.add(new Wall(2625, 1075, 25, 200, 0));
@@ -139,7 +152,7 @@ public class Caveman extends ApplicationAdapter {
         //seventh hallway
         walls.add(new Wall(2175, 1575, 200, 25, 0));
         walls.add(new Wall(2175, 1700, 200, 25, 0));
-        
+
         timer = 0;
 
     }
@@ -212,21 +225,21 @@ public class Caveman extends ApplicationAdapter {
             }
 
         }
-        
+
         for (int i = 0; i < items.size(); i++) {
-            if(player.collidesWith(items.get(i).getBounds())){
-            if(items.get(i) instanceof Key){
-                items.get(i).getBounds().width = 0;
-                items.get(i).getBounds().height = 0;
-                keyCount = keyCount + 1;
-            }
+            if (player.collidesWith(items.get(i).getBounds())) {
+                if (items.get(i) instanceof Key) {
+                    items.get(i).getBounds().width = 0;
+                    items.get(i).getBounds().height = 0;
+                    keyCount = keyCount + 1;
+                }
             }
         }
-        
+
         mouseX = Gdx.input.getX();
         mouseY = Gdx.input.getY();
-                rotate = MathUtils.atan2(300-mouseY,400-mouseX) + (float)Math.PI;
-               
+        rotate = MathUtils.atan2(300 - mouseY, 400 - mouseX) + (float) Math.PI;
+        System.out.println(rotate);
 
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
@@ -252,10 +265,7 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
         }
-        
-        
-        
-        
+
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
 
         cam.position.x = player.getPlayerX() + (player.getBounds().width / 2);
@@ -264,16 +274,15 @@ public class Caveman extends ApplicationAdapter {
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
         shapeBatch.setColor(Color.GOLD);
-        player.draw(shapeBatch);
-        
-        shapeBatch.line(player.getPlayerX()+player.getBounds().width/2, player.getPlayerY()+player.getBounds().height/2, player.getPlayerX()+player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getPlayerY()+player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)));
+
+        shapeBatch.line(player.getPlayerX() + player.getBounds().width / 2, player.getPlayerY() + player.getBounds().height / 2, player.getPlayerX() + player.getBounds().width / 2 + (float) (50f * MathUtils.cos(-rotate)), player.getPlayerY() + player.getBounds().height / 2 + (float) (50f * MathUtils.sin(-rotate)));
         for (int i = 0; i < walls.size(); i++) {
             if (walls.get(i).getColourNum() == 0) {
                 shapeBatch.setColor(Color.GRAY);
             } else if (walls.get(i).getColourNum() == 1) {
                 shapeBatch.setColor(Color.BROWN);
             }
-            
+
             shapeBatch.rect(walls.get(i).getBounds().x, walls.get(i).getBounds().y, walls.get(i).getBounds().width, walls.get(i).getBounds().height);
 
         }
@@ -281,7 +290,7 @@ public class Caveman extends ApplicationAdapter {
             shapeBatch.rect(items.get(i).getBounds().x, items.get(i).getBounds().y, items.get(i).getBounds().width, items.get(i).getBounds().height);
 
         }
-        
+
         shapeBatch.setColor(Color.GREEN);
         shapeBatch.rect(healthBar.x, healthBar.y, healthBar.width, healthBar.height);
         //enemies.get(1).draw(shapeBatch);
@@ -289,12 +298,37 @@ public class Caveman extends ApplicationAdapter {
         shapeBatch.end();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
-        
-        batch.draw(pImg1, player.getBounds().x, player.getBounds().y, 40, 40);
-        
+        //batch.draw(pImg1, player.getPlayerX()+player.getBounds().width/2, player.getPlayerY()+player.getBounds().height/2, player.getPlayerX()+player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getPlayerY()+player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)));
+        //batch.draw(pImg1, player.getBounds().x, player.getBounds().y,  player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)), 40, 40,1,1,rotate,0,0,160,160,false,false);
+        if (rotate < 5.634448 && rotate > 3.7895408) {
+            batch.draw(pImg90, player.getBounds().x, player.getBounds().y, 40, 40);
+        dLeft = false;
+        dRight = false;
+        dUp = true;
+        dDown = false;
+        } else if (rotate < 3.7895408 && rotate > 2.4967983) {
+            batch.draw(pImg180, player.getBounds().x, player.getBounds().y, 40, 40);
+            dLeft = true;
+        dRight = false;
+        dUp = false;
+        dDown = false;
+        } else if (rotate < 2.4967983 && rotate > 0.6439831) {
+            batch.draw(pImg270, player.getBounds().x, player.getBounds().y, 40, 40);
+            dLeft = false;
+        dRight = false;
+        dUp = false;
+        dDown = true;
+        } else {
+            batch.draw(pImg0, player.getBounds().x, player.getBounds().y, 40, 40);
+            dLeft = false;
+        dRight = true;
+        dUp = false;
+        dDown = false;
+        }
+
         for (int i = 0; i < enemies.size(); i++) {
-            
-        batch.draw(eImg, enemies.get(i).getBounds().x, enemies.get(i).getBounds().y, 40, 40);
+
+            batch.draw(eImg, enemies.get(i).getBounds().x, enemies.get(i).getBounds().y, 40, 40);
         }
         batch.end();
     }
