@@ -188,7 +188,6 @@ public class Player {
     }
     
     
-    
     public boolean collidesWith(Rectangle rect) {
         return player.overlaps(rect);
 }
