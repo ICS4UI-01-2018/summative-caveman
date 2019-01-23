@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
@@ -52,9 +55,18 @@ public class Caveman extends ApplicationAdapter {
     private int swordTimer;
     private int pTimer;
     private int eTimer;
+    private FreeTypeFontGenerator generator;
+    private FreeTypeFontParameter parameter;
+    private BitmapFont font;
 
     @Override
     public void create() {
+        generator = new FreeTypeFontGenerator(Gdx.files.internal("RunyTunesRevisitedNF.ttf"));
+        parameter = new FreeTypeFontParameter();
+        parameter.size = 10;
+        parameter.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!'()>?";
+        font = generator.generateFont(parameter);
+        generator.dispose();
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
         keyCount = 0;
@@ -62,6 +74,7 @@ public class Caveman extends ApplicationAdapter {
         items = new ArrayList<Items>();
         enemies = new ArrayList<Enemy>();
         dLeft = false;
+
         dRight = false;
         dUp = false;
         dDown = false;
@@ -179,9 +192,7 @@ public class Caveman extends ApplicationAdapter {
         pDownAllowed = true;
         pRightAllowed = true;
         pLeftAllowed = true;
-        
-        
-        
+
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.changeUpAllowed(true);
@@ -260,7 +271,6 @@ public class Caveman extends ApplicationAdapter {
         mouseX = Gdx.input.getX();
         mouseY = Gdx.input.getY();
         rotate = MathUtils.atan2(300 - mouseY, 400 - mouseX) + (float) Math.PI;
-        
 
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
@@ -273,13 +283,13 @@ public class Caveman extends ApplicationAdapter {
             }
 
         }
-        
+
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
 
             if (sword.getAttackStatus() && enemies.get(i).collidesWith(sword.getBounds()) && healthBar.width > 0 && eTimer == 0) {
                 enemies.get(i).health = enemies.get(i).health - 1;
-                
+
                 eTimer = 30;
             } else if (eTimer != 0) {
                 eTimer = eTimer - 1;
@@ -299,7 +309,6 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
         }
-        
 
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
 
@@ -309,16 +318,15 @@ public class Caveman extends ApplicationAdapter {
 
         sword.repostion(player, dUp, dDown, dLeft, dRight);
 
-        
-        
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             sword.attack();
             sword.changeAttackStatus(true);
+
         }
         if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             sword.changeAttackStatus(false);
         }
-        
+
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
         shapeBatch.setColor(Color.GOLD);
