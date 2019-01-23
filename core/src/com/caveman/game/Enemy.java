@@ -73,7 +73,12 @@ public class Enemy {
     public float getEnemyY() {
         return enemy.y;
     }
-
+    
+    
+    public int getEnemyHealth() {
+        return health;
+    }
+    
     public void move() {
 
     }
@@ -127,9 +132,8 @@ public class Enemy {
         if (distanceSQ > 300 * 300) {
             return;
         }
-        // if the enemy is not dead, follow the player up to their range times 3
-        if (dead == false) {
-
+        
+            if(dead == false){
             if (enemy.x + 10 > playX && leftAllowed) {
                 // they follow using their x or y position modified by their speed stat
                 // their direction updates too so they can attack accurately
@@ -153,7 +157,7 @@ public class Enemy {
                  
             }
 
-        }
+            }
     }
 
     /**
@@ -178,6 +182,8 @@ public class Enemy {
     public void dying() {
         if (health <= 0) {
             dead = true;
+            enemy.width = 0;
+            enemy.height = 0;
         }
     }
 
@@ -186,7 +192,7 @@ public class Enemy {
      * @return if the enemy has died
      */
     public boolean hasDied() {
-        return dead == true;
+        return dead;
     }
 
     /**

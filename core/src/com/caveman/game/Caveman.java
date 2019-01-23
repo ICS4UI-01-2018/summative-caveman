@@ -50,7 +50,8 @@ public class Caveman extends ApplicationAdapter {
     private float rotate;
     private int keyCount;
     private int swordTimer;
-    private int timer;
+    private int pTimer;
+    private int eTimer;
 
     @Override
     public void create() {
@@ -64,7 +65,7 @@ public class Caveman extends ApplicationAdapter {
         dRight = false;
         dUp = false;
         dDown = false;
-        swordTimer = 0;
+        eTimer = 0;
         eImg = new Texture("slime.png");
         pImg0 = new Texture("guy0.png");
         pImg90 = new Texture("guy90.png");
@@ -90,7 +91,7 @@ public class Caveman extends ApplicationAdapter {
         player = new Player(390, 290, 40, 40, 5, 4);
         sword = new Sword(0, " ", player.getPlayerX() - 15, player.getPlayerY(), 15, 50, 10);
         //enemies
-        enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 40, 40));
+        enemies.add(new Enemy(300, 150, 3, 25, 1, 200, 40, 40));
         //items
         items.add(new Key(1, "hi", 430, 320, 20, 20));
         items.add(new Shield(1, "hi", 230, 320, 20, 20, 15));
@@ -165,7 +166,7 @@ public class Caveman extends ApplicationAdapter {
         walls.add(new Wall(2175, 1575, 200, 25, 0));
         walls.add(new Wall(2175, 1700, 200, 25, 0));
 
-        timer = 0;
+        pTimer = 0;
 
     }
 
@@ -264,22 +265,11 @@ public class Caveman extends ApplicationAdapter {
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
 
-            if (player.collidesWith(enemies.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
+            if (player.collidesWith(enemies.get(i).getBounds()) && !(enemies.get(i).hasDied()) && healthBar.width > 0 && pTimer == 0) {
                 healthBar.width = healthBar.width - enemies.get(i).getDamage();
-                timer = 75;
-            } else if (timer != 0) {
-                timer = timer - 1;
-            }
-
-        }
-        for (int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).trackPlayer(player);
-
-            if (player.collidesWith(enemies.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
-                healthBar.width = healthBar.width - enemies.get(i).getDamage();
-                timer = 75;
-            } else if (timer != 0) {
-                timer = timer - 1;
+                pTimer = 75;
+            } else if (pTimer != 0) {
+                pTimer = pTimer - 1;
             }
 
         }
@@ -287,13 +277,14 @@ public class Caveman extends ApplicationAdapter {
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
 
-            if (enemies.get(i).collidesWith(sword.getBounds()) && healthBar.width > 0 && timer == 0) {
-                healthBar.width = healthBar.width - enemies.get(i).getDamage();
-                timer = 75;
-            } else if (timer != 0) {
-                timer = timer - 1;
+            if (sword.getAttackStatus() && enemies.get(i).collidesWith(sword.getBounds()) && healthBar.width > 0 && eTimer == 0) {
+                enemies.get(i).health = enemies.get(i).health - 1;
+                
+                eTimer = 30;
+            } else if (eTimer != 0) {
+                eTimer = eTimer - 1;
             }
-
+            enemies.get(i).dying();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.W) && pUpAllowed) {
