@@ -110,7 +110,7 @@ public class Player {
      * and the number of them is decreases.
      * if the player does not have any items, the player cannot use any items.
      */
-    public boolean usingItems(){
+    public boolean usingItems(int numFood, int numShield){
         if(numItems > 0){
             if(useItems == true){
                 if(items == food && numFood > 0){
@@ -188,7 +188,6 @@ public class Player {
             health = 0;
         }
     }
-    
     
     
     public boolean collidesWith(Rectangle rect) {
