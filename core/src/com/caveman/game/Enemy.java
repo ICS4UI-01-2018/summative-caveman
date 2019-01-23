@@ -109,7 +109,7 @@ public class Enemy {
     public boolean getRightAllowed() {
         return rightAllowed;
     }
-
+    
     public boolean getDownAllowed() {
         return downAllowed;
     }

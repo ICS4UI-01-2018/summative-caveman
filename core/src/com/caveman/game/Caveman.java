@@ -178,6 +178,9 @@ public class Caveman extends ApplicationAdapter {
         pDownAllowed = true;
         pRightAllowed = true;
         pLeftAllowed = true;
+        
+        
+        
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.changeUpAllowed(true);
@@ -248,7 +251,7 @@ public class Caveman extends ApplicationAdapter {
                 if (items.get(i) instanceof Shield) {
                     items.get(i).getBounds().width = 0;
                     items.get(i).getBounds().height = 0;
-                    
+
                 }
             }
         }
@@ -256,12 +259,35 @@ public class Caveman extends ApplicationAdapter {
         mouseX = Gdx.input.getX();
         mouseY = Gdx.input.getY();
         rotate = MathUtils.atan2(300 - mouseY, 400 - mouseX) + (float) Math.PI;
-        System.out.println(rotate);
+        
 
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).trackPlayer(player);
 
             if (player.collidesWith(enemies.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
+                healthBar.width = healthBar.width - enemies.get(i).getDamage();
+                timer = 75;
+            } else if (timer != 0) {
+                timer = timer - 1;
+            }
+
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).trackPlayer(player);
+
+            if (player.collidesWith(enemies.get(i).getBounds()) && healthBar.width > 0 && timer == 0) {
+                healthBar.width = healthBar.width - enemies.get(i).getDamage();
+                timer = 75;
+            } else if (timer != 0) {
+                timer = timer - 1;
+            }
+
+        }
+        
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).trackPlayer(player);
+
+            if (enemies.get(i).collidesWith(sword.getBounds()) && healthBar.width > 0 && timer == 0) {
                 healthBar.width = healthBar.width - enemies.get(i).getDamage();
                 timer = 75;
             } else if (timer != 0) {
@@ -282,14 +308,7 @@ public class Caveman extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
         }
-        if (Gdx.input.isKeyPressed(Input.Buttons.LEFT)) {
-            swordTimer = 0;
-            sword.Attack();
-            while (swordTimer < 3000) {
-                swordTimer = swordTimer + 1;
-            }
-            sword.sheath();
-        }
+        
 
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
 
@@ -299,6 +318,16 @@ public class Caveman extends ApplicationAdapter {
 
         sword.repostion(player, dUp, dDown, dLeft, dRight);
 
+        
+        
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            sword.attack();
+            sword.changeAttackStatus(true);
+        }
+        if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            sword.changeAttackStatus(false);
+        }
+        
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
         shapeBatch.setColor(Color.GOLD);
@@ -328,23 +357,6 @@ public class Caveman extends ApplicationAdapter {
         batch.begin();
         //batch.draw(pImg1, player.getPlayerX()+player.getBounds().width/2, player.getPlayerY()+player.getBounds().height/2, player.getPlayerX()+player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getPlayerY()+player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)));
         //batch.draw(pImg1, player.getBounds().x, player.getBounds().y,  player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)), 40, 40,1,1,rotate,0,0,160,160,false,false);
-        if (Gdx.input.isKeyPressed(Input.Buttons.LEFT)) {
-            swordTimer = 0;
-            sword.Attack();
-            if (sword.sPos() == 0) {
-
-            } else if (sword.sPos() == 90) {
-                batch.draw(sImg90, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
-            } else if (sword.sPos() == 180) {
-                batch.draw(sImg180, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
-            } else if (sword.sPos() == 270) {
-            batch.draw(sImg270, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
-            }
-            while (swordTimer < 3000) {
-                swordTimer = swordTimer + 1;
-            }
-            sword.sheath();
-        }
         if (rotate < 5.634448 && rotate > 3.7895408) {
             batch.draw(pImg90, player.getBounds().x, player.getBounds().y, 40, 40);
             batch.draw(sImg90, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);

@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Sword {
 
-    private boolean Attack;
+    private boolean attacking;
     private Rectangle sword;
     private int range;
     private int sPos;
@@ -43,7 +43,7 @@ public class Sword {
      * Then, by making boolean attack = false, make it to attack the enemy only
      * once at a time.
      */
-    public void Attack() {
+    public void attack() {
         if (sPos == 0) {
             sword.x = sword.x + range;
 
@@ -55,6 +55,17 @@ public class Sword {
             sword.y = sword.y - range;
         }
     }
+    
+    
+    public void changeAttackStatus(boolean i) {
+       attacking = i;
+  }
+    public boolean getAttackStatus() {
+       return attacking;
+  }
+   public boolean attacking() {
+       return attacking;
+  }
 
     public int sPos() {
         return sPos;
