@@ -24,12 +24,16 @@ public class Caveman extends ApplicationAdapter {
     private Texture pImg90;
     private Texture pImg270;
     private Texture pImg180;
+    private Texture sImg0;
+    private Texture sImg90;
+    private Texture sImg270;
+    private Texture sImg180;
     private boolean dLeft;
     private boolean dRight;
     private boolean dUp;
     private boolean dDown;
     private Player player;
-
+    private Sword sword;
     private ArrayList<Wall> walls;
     private ArrayList<Items> items;
     private Rectangle healthBar;
@@ -65,6 +69,10 @@ public class Caveman extends ApplicationAdapter {
         pImg90 = new Texture("guy90.png");
         pImg180 = new Texture("guy180.png");
         pImg270 = new Texture("guy270.png");
+        sImg0 = new Texture("sword0.png");
+        sImg90 = new Texture("sword90.png");
+        sImg180 = new Texture("sword180.png");
+        sImg270 = new Texture("sword270.png");
         cam = new OrthographicCamera(800, 600);
         viewport = new FitViewport(800, 600, cam);
         viewport.apply();
@@ -77,7 +85,9 @@ public class Caveman extends ApplicationAdapter {
         pLeftAllowed = true;
         healthBar = new Rectangle(100, 25, 600, 25);
         walls.add(new Door(325, 550, 150, 25, 1));
+        
         player = new Player(390, 290, 40, 40, 5, 4);
+        sword = new Sword(0, " ", player.getPlayerX() - 15, player.getPlayerY(), 15, 50);
         //enemies
         enemies.add(new Enemy(300, 150, 1, 25, 1, 200, 40, 40));
         //items
@@ -271,6 +281,10 @@ public class Caveman extends ApplicationAdapter {
         cam.position.x = player.getPlayerX() + (player.getBounds().width / 2);
         cam.position.y = player.getPlayerY() + (player.getBounds().height / 2);
         cam.update();
+        
+        sword.repostion(player, dUp, dDown, dLeft, dRight);
+        
+        
         shapeBatch.setProjectionMatrix(cam.combined);
         shapeBatch.begin(ShapeType.Filled);
         shapeBatch.setColor(Color.GOLD);
@@ -302,28 +316,32 @@ public class Caveman extends ApplicationAdapter {
         //batch.draw(pImg1, player.getBounds().x, player.getBounds().y,  player.getBounds().width/2+(float)(50f*MathUtils.cos(-rotate)), player.getBounds().height/2+(float)(50f*MathUtils.sin(-rotate)), 40, 40,1,1,rotate,0,0,160,160,false,false);
         if (rotate < 5.634448 && rotate > 3.7895408) {
             batch.draw(pImg90, player.getBounds().x, player.getBounds().y, 40, 40);
-        dLeft = false;
-        dRight = false;
-        dUp = true;
-        dDown = false;
+            batch.draw(sImg90, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
+            dLeft = false;
+            dRight = false;
+            dUp = true;
+            dDown = false;
         } else if (rotate < 3.7895408 && rotate > 2.4967983) {
             batch.draw(pImg180, player.getBounds().x, player.getBounds().y, 40, 40);
+            batch.draw(sImg180, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
             dLeft = true;
-        dRight = false;
-        dUp = false;
-        dDown = false;
+            dRight = false;
+            dUp = false;
+            dDown = false;
         } else if (rotate < 2.4967983 && rotate > 0.6439831) {
             batch.draw(pImg270, player.getBounds().x, player.getBounds().y, 40, 40);
+            batch.draw(sImg270, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
             dLeft = false;
-        dRight = false;
-        dUp = false;
-        dDown = true;
+            dRight = false;
+            dUp = false;
+            dDown = true;
         } else {
             batch.draw(pImg0, player.getBounds().x, player.getBounds().y, 40, 40);
+            batch.draw(sImg0, sword.getBounds().x, sword.getBounds().y, sword.getBounds().width, sword.getBounds().height);
             dLeft = false;
-        dRight = true;
-        dUp = false;
-        dDown = false;
+            dRight = true;
+            dUp = false;
+            dDown = false;
         }
 
         for (int i = 0; i < enemies.size(); i++) {
