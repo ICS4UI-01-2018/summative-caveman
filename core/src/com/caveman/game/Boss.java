@@ -32,7 +32,7 @@ public class Boss extends Slasher {
         this.attackRange = 20;
         this.damage = 250;
     }
-
+    
     @Override
     public float getEnemyX() {
         return this.xPos;

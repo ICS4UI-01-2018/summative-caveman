@@ -5,6 +5,7 @@
  */
 package com.caveman.game;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -109,21 +110,23 @@ public class Player {
      * and the number of them is decreases.
      * if the player does not have any items, the player cannot use any items.
      */
-    public void usingItems(){
+    public boolean usingItems(){
         if(numItems > 0){
             if(useItems == true){
                 if(items == food && numFood > 0){
                     food.eat();
                     numFood--;
-                }else if(items == shield && numShield > 0){
+                }
+                if(items == shield && numShield > 0){
                     shield.Shielded();
                     numShield--;
                 }
-                useItems = false;
+                return useItems = false;
             }
         }else if(numItems <= 0){
-            useItems = false;
+            return useItems = false;
         }
+        return useItems = false;
     }
     
     /**
@@ -186,10 +189,7 @@ public class Player {
         }
     }
     
-    public void draw(ShapeRenderer shapeBatch) {
-        shapeBatch.rect(player.x, player.y, player.width, player.height);
-    }
-
+    
     
     public boolean collidesWith(Rectangle rect) {
         return player.overlaps(rect);
