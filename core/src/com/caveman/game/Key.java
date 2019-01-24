@@ -12,14 +12,18 @@ package com.caveman.game;
  * @author tarra7926
  * @author macdn5071
  */
-public class Key extends Items{
-    
+public class Key extends Items {
+
     /**
-     * Open the door when the player get a key 
+     * refer to items
+     *
      * @param effect
-     * @param name 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
      */
-    public Key(int effect, String name, float x, float y, int width, int height){
-        super(effect, name, x, y,width, height);
+    public Key(int effect, float x, float y, int width, int height) {
+        super(effect, x, y, width, height);
     }
 }

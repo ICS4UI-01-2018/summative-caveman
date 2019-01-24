@@ -17,41 +17,43 @@ import com.badlogic.gdx.math.Rectangle;
 public class Items {
 
     private int effect;
-    private String name;
     private float x;
     private float y;
     private Rectangle item;
-    
-    public Items(int effect, String name, float x, float y, int width, int height){
+
+    /**
+     *
+     * @param effect used to differentiate between different types of similar
+     * items
+     * @param x the x position of the item
+     * @param y the y position of the item
+     * @param width the width of the item
+     * @param height the height of the item
+     */
+    public Items(int effect, float x, float y, int width, int height) {
         this.effect = effect;
         this.x = x;
         this.y = y;
         item = new Rectangle(x, y, width, height);
-        this.name = name;
+
     }
 
+    /**
+     * get the effect integer
+     *
+     * @return the effect integer
+     */
     public int getEffect() {
         return this.effect;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    
     /**
-     * create and set the position of new items 
-     * @param x x-position of the new items will be located
-     * @param y y-position of the new items will be located
+     * get the item rectangle
+     *
+     * @return the item rectangle
      */
-    public void setPosition(float x, float y){
-        this.x = x;
-        this.y = y;
-    }
-    
-    
     public Rectangle getBounds() {
         return item;
-    }  
-    
+    }
+
 }

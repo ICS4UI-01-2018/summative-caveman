@@ -26,16 +26,11 @@ public class Enemy {
     public int damage;
     public int speed;
     public int attackRange;
-    public boolean collide;
     public boolean dead;
-    Player player;
-    public boolean attack;
-    public boolean tracking;
     public boolean upAllowed;
     public boolean leftAllowed;
     public boolean rightAllowed;
     public boolean downAllowed;
-    
 
     /**
      *
@@ -59,7 +54,7 @@ public class Enemy {
     }
 
     /**
-     * 
+     *
      * @return enemy X position
      */
     public float getEnemyX() {
@@ -73,55 +68,92 @@ public class Enemy {
     public float getEnemyY() {
         return enemy.y;
     }
-    
-    
+
+    /**
+     * get the health integer
+     *
+     * @return the health integer
+     */
     public int getEnemyHealth() {
         return health;
     }
-    
-    public void move() {
 
-    }
-
-    public void health() {
-
-    }
-
+    /**
+     * change the upAllowed variable
+     *
+     * @param upAllowed what we are changing the variable to
+     */
     public void changeUpAllowed(boolean upAllowed) {
         this.upAllowed = upAllowed;
     }
 
+    /**
+     * change the leftAllowed variable
+     *
+     * @param leftAllowed what we are changing the variable to
+     */
     public void changeLeftAllowed(boolean leftAllowed) {
         this.leftAllowed = leftAllowed;
     }
 
+    /**
+     * change the rightAllowed variable
+     *
+     * @param rightAllowed what we are changing the variable to
+     */
     public void changeRightAllowed(boolean rightAllowed) {
         this.rightAllowed = rightAllowed;
     }
 
+    /**
+     * change the downAllowed variable
+     *
+     * @param downAllowed what we are changing the variable to
+     */
     public void changeDownAllowed(boolean downAllowed) {
         this.downAllowed = downAllowed;
     }
 
+    /**
+     * get the upAllowed Boolean
+     *
+     * @return the upAllowed boolean
+     */
     public boolean getUpAllowed() {
         return upAllowed;
     }
 
+    /**
+     * get the leftAllowed Boolean
+     *
+     * @return the leftAllowed boolean
+     */
     public boolean getLeftAllowed() {
         return leftAllowed;
     }
 
+    /**
+     * get the rightAllowed Boolean
+     *
+     * @return the rightAllowed boolean
+     */
     public boolean getRightAllowed() {
         return rightAllowed;
     }
-    
+
+    /**
+     * get the downAllowed Boolean
+     *
+     * @return the downAllowed boolean
+     */
     public boolean getDownAllowed() {
         return downAllowed;
     }
 
     /**
+     * has the enemy track the enemy player while in range
      *
-     * @param player tracks the player's movement
+     * @param player the player the enemy will be tracking
      */
     public void trackPlayer(Player player) {
 
@@ -132,40 +164,28 @@ public class Enemy {
         if (distanceSQ > 300 * 300) {
             return;
         }
-        
-            if(dead == false){
+
+        if (dead == false) {
             if (enemy.x + 10 > playX && leftAllowed) {
-                // they follow using their x or y position modified by their speed stat
-                // their direction updates too so they can attack accurately
                 enemy.x = enemy.x - speed;
-                
+
             } else if (enemy.x + 10 < playX && rightAllowed) {
                 enemy.x = enemy.x + speed;
-                 
+
             } else {
                 enemy.x = enemy.x;
-                
+
             }
             if (enemy.y + 10 > playY && downAllowed) {
                 enemy.y = enemy.y - speed;
-                   
+
             } else if (enemy.y + 10 < playY && upAllowed) {
                 enemy.y = enemy.y + speed;
-                     
+
             } else {
                 enemy.y = enemy.y;
-                 
             }
-
-            }
-    }
-
-    /**
-     *
-     * @return where the player is if in range
-     */
-    public boolean track() {
-        return tracking == true;
+        }
     }
 
     /**
@@ -196,43 +216,38 @@ public class Enemy {
     }
 
     /**
+     * get the enemy rectangle
      *
-     * @param damage is how much the enemy takes away health
-     * @param attackRange is how far the enemy can attack
-     * @param player tracks the player's actions
+     * @return the enemy rectangle
      */
-    public void attack(int damage, int attackRange, Player player) {
-        // if they are in range to attack, deal damage on a timer
-        if (attack == true) {
-            if (player.x <= this.getEnemyX() + attackRange && player.x >= this.getEnemyX() - attackRange) {
-                if (player.y <= this.getEnemyY() + attackRange && player.y >= this.getEnemyY() - attackRange) {
-                    player.health = player.health - damage;
-                    attack = false;
-                }
-            }
-        }
-    }
-
-    /**
-     *
-     * @return if the enemy is attacking or not
-     */
-    public boolean attacking() {
-        return attack == true;
-    }
-
     public Rectangle getBounds() {
         return enemy;
     }
 
+    /**
+     * get the attack range
+     *
+     * @return the attackRagne integer
+     */
     public int getAttackRange() {
         return attackRange;
     }
 
+    /**
+     * get the damage
+     *
+     * @return the damage integer
+     */
     public int getDamage() {
         return damage;
     }
 
+    /**
+     * check whether the rectangle overlaps with the enemy or not
+     *
+     * @param rect the rectangle we will be checking
+     * @return the overlap boolean
+     */
     public boolean collidesWith(Rectangle rect) {
         return enemy.overlaps(rect);
     }

@@ -23,13 +23,14 @@ public class Sword {
     private int sPos;
 
     /**
-     * Refer to Items
      *
-     * @param effect
-     * @param range that player can attack
-     * @param name of item == sword
+     * @param x the x position of the sword
+     * @param y the y position of the sword
+     * @param width the width of the sword
+     * @param height the height of the sword
+     * @param range the effective range of the sword
      */
-    public Sword(int effect, String name, float x, float y, int width, int height, int range) {
+    public Sword(float x, float y, int width, int height, int range) {
 
         sword = new Rectangle(x, y, width, height);
         this.range = range;
@@ -37,11 +38,7 @@ public class Sword {
     }
 
     /**
-     * if the player try to execute to attack enemy(== when attack key pressed),
-     * it is executed when the enemy is within the attack range. When the player
-     * successfully attack the enemy, the enemy's health is decreased by 100 hp.
-     * Then, by making boolean attack = false, make it to attack the enemy only
-     * once at a time.
+     * sets the swords x and y coordinates into an attacking position
      */
     public void attack() {
         if (sPos == 0) {
@@ -55,22 +52,28 @@ public class Sword {
             sword.y = sword.y - range;
         }
     }
-    
-    
-    public void changeAttackStatus(boolean i) {
-       attacking = i;
-  }
-    public boolean getAttackStatus() {
-       return attacking;
-  }
-   public boolean attacking() {
-       return attacking;
-  }
 
-    public int sPos() {
-        return sPos;
+    /**
+     * change the attacking boolean
+     *
+     * @param i the boolean were going to change into
+     */
+    public void changeAttackStatus(boolean i) {
+        attacking = i;
     }
 
+    /**
+     * get the attack status
+     *
+     * @return the attacking boolean
+     */
+    public boolean getAttackStatus() {
+        return attacking;
+    }
+
+    /**
+     * returns the sword into non-attacking position
+     */
     public void sheath() {
         if (sPos == 0) {
             sword.x = sword.x - range;
@@ -84,10 +87,27 @@ public class Sword {
         }
     }
 
+    /**
+     * get the sword rectangle
+     *
+     * @return the sword rectangle
+     */
     public Rectangle getBounds() {
         return sword;
     }
 
+    /**
+     * change the swords rotation
+     *
+     * @param player the player the we are basing the position off of
+     * @param dUp the up boolean of whether the player is facing that direction
+     * @param dDown the down boolean of whether the player is facing that
+     * direction
+     * @param dLeft the left boolean of whether the player is facing that
+     * direction
+     * @param dRight the right boolean of whether the player is facing that
+     * direction
+     */
     public void repostion(Player player, boolean dUp, boolean dDown, boolean dLeft, boolean dRight) {
         if (dUp) {
             sword.x = player.getPlayerX() + player.getBounds().width - 19;
