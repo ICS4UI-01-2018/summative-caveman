@@ -58,6 +58,8 @@ public class Caveman extends ApplicationAdapter {
     private FreeTypeFontGenerator generator;
     private FreeTypeFontParameter parameter;
     private BitmapFont font;
+    Food food;
+    Shield shield;
 
     @Override
     public void create() {
@@ -263,7 +265,7 @@ public class Caveman extends ApplicationAdapter {
                 if (items.get(i) instanceof Shield) {
                     items.get(i).getBounds().width = 0;
                     items.get(i).getBounds().height = 0;
-
+                    numShield = numShield + 1;
                 }
             }
         }
@@ -308,6 +310,15 @@ public class Caveman extends ApplicationAdapter {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S) && pDownAllowed) {
             player.moveDown();
+        }
+        
+        if (Gdx.input.isKeyPressed(Input.Keys.I)) {
+            if(numShield > 0){
+                shield.Shielded();
+            }
+            else if(numFood > 0){
+                food.eat();
+            }
         }
 
         healthBar.setPosition(player.getPlayerX() - 290, player.getPlayerY() - 265);
